@@ -11,6 +11,7 @@
     "bootstrap": "^4.3.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-fontawesome": "^1.6.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
   }
 }
