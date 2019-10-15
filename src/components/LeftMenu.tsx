@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LeftMenu: React.FC = () => {
     return (
@@ -14,20 +15,23 @@ const LeftMenu: React.FC = () => {
             <hr className="sidebar-divider my-0" />
 
             <li className="nav-item active">
-                <a className="nav-link" href="index.html">
+
+                <Link className="nav-link" to="Home">
                     <i className="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </Link>
             </li>
 
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">
-                Interface
+                Warehouse
             </div>
 
             <li className="nav-item">
-                <a className="nav-link" href="charts.html">
-                    <i className="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                <Link className="nav-link" to="products">
+                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Products</span>
+                </Link>
             </li>
 
             <li className="nav-item">
