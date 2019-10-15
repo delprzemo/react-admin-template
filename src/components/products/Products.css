@@ -24,3 +24,11 @@
     margin-right: 3px;
     width: 40px;
 }
+
+.table-row {
+    cursor: pointer;
+}
+
+.selected {
+    background-color:lavender;
+}

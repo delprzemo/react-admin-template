@@ -2,16 +2,20 @@ import React from "react";
 import TopMenuAccount from "./TopMenuAccount";
 import TopMenuInbox from "./TopMenuInbox";
 import "./TopMenu.css";
+import { useSelector } from "react-redux";
+import { IStateType, IRootPageStateType } from "../../store/models/root.interfaces";
 
 const TopMenu: React.FC = () => {
+
+  const page: IRootPageStateType = useSelector((state: IStateType) => state.root.page);
+
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <ol className="breadcrumb white-breadcrumb">
-          <li className="breadcrumb-item"><a href="#">Home</a></li>
-          <li className="breadcrumb-item"><a href="#">Library</a></li>
-          <li className="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
+      <ol className="breadcrumb white-breadcrumb">
+        <li className="breadcrumb-item"><a href="#">{page ? page.area : null}</a></li>
+        <li className="breadcrumb-item"><a href="#">{page ? page.subArea : null}</a></li>
+      </ol>
 
       <ul className="navbar-nav ml-auto">
         <TopMenuInbox />

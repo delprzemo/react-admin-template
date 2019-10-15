@@ -1,6 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Dispatch } from "react";
+import { useDispatch } from "react-redux";
+import { updateCurrentPath } from "../store/actions/root.actions";
 
 const Home: React.FC = () => {
+
+  const dispatch: Dispatch<any> = useDispatch();
+  dispatch(updateCurrentPath("home", ""));
+
   return (
     <Fragment>
       <h1 className="h3 mb-2 text-gray-800">Charts</h1>

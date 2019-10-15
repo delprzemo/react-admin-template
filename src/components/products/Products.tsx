@@ -1,10 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Dispatch } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
 import Card from "../../common/elements/card";
 import "./Products.css";
+import { useDispatch } from "react-redux";
+import { updateCurrentPath } from "../../store/actions/root.actions";
 
 const Products: React.FC = () => {
+  const dispatch: Dispatch<any> = useDispatch();
+  dispatch(updateCurrentPath("products", "list"));
   return (
     <Fragment>
       <h1 className="h3 mb-2 text-gray-800">Products</h1>
