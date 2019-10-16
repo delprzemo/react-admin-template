@@ -1,13 +1,19 @@
-import React, { Fragment, Dispatch } from "react";
+import React, { Fragment, Dispatch, useState } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
 import Card from "../../common/elements/card";
 import "./Products.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
+import { IProductState, IStateType } from "../../store/models/root.interfaces";
+import Popup from "reactjs-popup";
+import { removeProduct, clearProductPendingEdit } from "../../store/actions/products.action";
 
 const Products: React.FC = () => {
-  const dispatch: Dispatch<any> = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch();
+  const products: IProductState = useSelector((state: IStateType) => state.products);
+  const [popup, setPopup] = useState(false);
+
   dispatch(updateCurrentPath("products", "list"));
   return (
     <Fragment>
@@ -15,9 +21,9 @@ const Products: React.FC = () => {
       <p className="mb-4">Products here</p>
 
       <div className="row">
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="calendar" class="primary"/>
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="store" class="success"/>
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="pen" class="danger"/>
+        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="calendar" class="primary" />
+        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="store" class="success" />
+        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="pen" class="danger" />
       </div>
 
       <div className="row">
@@ -32,7 +38,7 @@ const Products: React.FC = () => {
                 <button className="btn btn-success btn-blue">
                   <i className="fas fa fa-pen"></i>
                 </button>
-                <button className="btn btn-success btn-red">
+                <button className="btn btn-success btn-red" onClick={() => setPopup(true)}>
                   <i className="fas fa fa-times"></i>
                 </button>
               </div>
@@ -42,8 +48,35 @@ const Products: React.FC = () => {
             </div>
           </div>
         </div>
-        <ProductForm />
+        {(products.editProduct) ? <ProductForm /> : null}
       </div>
+
+
+      <Popup
+        className="popup-modal"
+        open={popup}
+        onClose={() => setPopup(false)}
+        closeOnDocumentClick
+      >
+        <div className="popup-modal">
+          <div className="popup-title">
+            Are you sure?
+          </div>
+          <div className="popup-content">
+            <button type="button"
+              className="btn btn-danger"
+              onClick={() => {
+                if (!products.editProduct) {
+                  return;
+                }
+                dispatch(removeProduct(products.editProduct.id));
+                dispatch(clearProductPendingEdit());
+                setPopup(false);
+              }}>Remove
+              </button>
+          </div>
+        </div>
+      </Popup>
     </Fragment >
   );
 };

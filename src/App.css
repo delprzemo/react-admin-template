@@ -1,3 +1,31 @@
 body {
     color: darkslategray;
 }
+
+.popup-modal-content {
+    width: 300px !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.popup-title {
+    height: 40px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    background-color: whitesmoke;
+    top: 0px;
+    text-align: center;
+    padding-top: 5px;
+    color: black;
+}
+
+.popup-content {
+    margin-top:40px;
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.popup-modal {
+    height: 70px;
+}

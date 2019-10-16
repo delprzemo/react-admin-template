@@ -1,8 +1,28 @@
-import React from "react";
+import React, { Dispatch } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { IStateType, IProductState } from "../../store/models/root.interfaces";
+import { changeProductPendingEdit } from "../../store/actions/products.action";
 
 const ProductList: React.FC = () => {
-  return (
+  const dispatch: Dispatch<any> = useDispatch();
+  const products: IProductState = useSelector((state: IStateType) => state.products);
+  const productElements: (JSX.Element | null)[] = products.products.map(product => {
+    if (!product) { return null; };
+    return (<tr className={`table-row ${(products.editProduct && products.editProduct.id === product.id) ? "selected" : ""}`}
+      onClick={() => { dispatch(changeProductPendingEdit(product)); }}
+      key={`product_${product.id}`}>
+      <th scope="row">{product.id}</th>
+      <td>{product.name}</td>
+      <td>{product.category}</td>
+      <td>{product.amount}</td>
+      <td>{product.price}</td>
+    </tr>);
+  }
 
+  );
+
+
+  return (
     <div className="table-responsive portlet">
       <table className="table">
         <thead className="thead-light">
@@ -15,20 +35,7 @@ const ProductList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="table-row">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>10</td>
-            <td>22</td>
-          </tr>
-          <tr className="table-row selected">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>10</td>
-            <td>22</td>
-          </tr>
+          {productElements}
         </tbody>
       </table>
     </div>
