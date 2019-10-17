@@ -1,7 +1,7 @@
 import React, { Fragment, Dispatch, useState } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
-import Card from "../../common/elements/card";
+import Card from "../../common/elements/Card";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";

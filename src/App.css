@@ -3,29 +3,48 @@ body {
 }
 
 .popup-modal-content {
-    width: 300px !important;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    width     : 300px !important;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
 }
 
 .popup-title {
-    height: 40px;
-    position: absolute;
-    width: 100%;
-    left: 0px;
+    height          : 40px;
+    position        : absolute;
+    width           : 100%;
+    left            : 0px;
     background-color: whitesmoke;
-    top: 0px;
-    text-align: center;
-    padding-top: 5px;
-    color: black;
+    top             : 0px;
+    text-align      : center;
+    padding-top     : 5px;
+    color           : black;
 }
 
 .popup-content {
-    margin-top:40px;
+    margin-top : 40px;
     padding-top: 10px;
-    width: 100%;
-    text-align: center;
+    width      : 100%;
+    text-align : center;
 }
 
 .popup-modal {
     height: 70px;
+}
+
+.left-margin {
+    margin-left: 10px;
+}
+
+.toast-wrapper {
+    position: absolute;
+    top     : 30px;
+    right   : 30px;
+    z-index: 100 !important;
+}
+
+.toast {
+    opacity: 0.95 !important;
+}
+
+.toast-header {
+    color: dodgerblue !important;
 }
