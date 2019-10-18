@@ -7,6 +7,7 @@ import { editProduct, clearProductPendingEdit, setModificationState } from "../.
 import { addNotification } from "../../store/actions/notifications.action";
 import NumberInput, { OnChangeNumberModel } from "../../common/elements/NumberInput";
 import Checkbox, { OnChangeCheckboxModel } from "../../common/elements/Checkbox";
+import SelectInput from "../../common/elements/Select";
 
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -16,7 +17,8 @@ const ProductForm: React.FC = () => {
     description: { error: "", value: product ? product.description : "" },
     amount: { error: "", value: product ? product.amount : 0 },
     price: { error: "", value: product ? product.price : 0 },
-    hasExpiryDate: { error: "", value: product ? product.hasExpiryDate : false }
+    hasExpiryDate: { error: "", value: product ? product.hasExpiryDate : false },
+    category: { error: "", value: product ? product.category : "" }
   });
 
   function hasExpiryDateChanged(model: OnChangeCheckboxModel): void {
@@ -39,6 +41,10 @@ const ProductForm: React.FC = () => {
     setFormState({ ...formState, price: { error: model.error, value: model.value } });
   }
 
+  function onCategoryChange(model: OnChangeModel): void {
+    setFormState({ ...formState, category: { error: model.error, value: model.value } });
+  }
+
   function saveUser(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     if (getDisabledClass()) return;
@@ -49,7 +55,8 @@ const ProductForm: React.FC = () => {
         description: formState.description.value,
         price: formState.price.value,
         amount: formState.amount.value,
-        hasExpiryDate: formState.hasExpiryDate.value
+        hasExpiryDate: formState.hasExpiryDate.value,
+        category: formState.category.value
       }));
 
       dispatch(addNotification("Product edited", `Product ${formState.name.value} edited by you`))
@@ -64,7 +71,8 @@ const ProductForm: React.FC = () => {
 
   function getDisabledClass(): string {
     let isError = (formState.amount.error || formState.description.error
-      || formState.name.error || formState.price.error || formState.hasExpiryDate.error)
+      || formState.name.error || formState.price.error || formState.hasExpiryDate.error
+      || formState.category.error)
 
     return isError ? "disabled" : "";
   }
@@ -89,11 +97,14 @@ const ProductForm: React.FC = () => {
                     placeholder="Name" />
                 </div>
                 <div className="form-group col-md-6">
-                  <label htmlFor="inputState">Category</label>
-                  <select id="inputState" className="form-control">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </select>
+                  <SelectInput
+                    id="input_category"
+                    label="Category"
+                    options={["Fruit", "Sweet", "Kitchen"]}
+                    required={true}
+                    onChange={onCategoryChange}
+                    value={formState.category.value}
+                  />
                 </div>
               </div>
               <div className="form-group">
@@ -125,12 +136,11 @@ const ProductForm: React.FC = () => {
               </div>
               <div className="form-group">
                 <Checkbox
-                  id="checkbox_expiry" 
+                  id="checkbox_expiry"
                   value={formState.hasExpiryDate.value}
-                  required={true}
                   label="Has expiry date"
                   onChange={hasExpiryDateChanged}
-                  />
+                />
               </div>
               <button className="btn btn-danger" onClick={() => cancelForm()}>Cancel</button>
               <button type="submit" className={`btn btn-primary left-margin ${getDisabledClass()}`}>Save</button>
