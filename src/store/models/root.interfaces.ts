@@ -1,4 +1,4 @@
-import { IProduct } from "./product.interface";
+import { IProduct, ProductModificationStatus } from "./product.interface";
 import { INotification } from "./notification.interface";
 
 export interface IRootPageStateType {
@@ -18,6 +18,7 @@ export interface IStateType {
 export interface IProductState {
     products: IProduct[];
     editProduct: IProduct | null;
+    modificationState: ProductModificationStatus;
 }
 
 export interface IActionBase {

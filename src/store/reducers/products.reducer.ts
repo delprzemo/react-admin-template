@@ -1,11 +1,12 @@
 import { IProductState, IActionBase } from "../models/root.interfaces";
 import { ADD_PRODUCT, CHANGE_PRODUCT_PENDING_EDIT, EDIT_PRODUCT, REMOVE_PRODUCT,
-    CLEAR_PRODUCT_PENDING_EDIT } from "../actions/products.action";
-import { IProduct } from "../models/product.interface";
+    CLEAR_PRODUCT_PENDING_EDIT, SET_MODIFICATION_STATE} from "../actions/products.action";
+import { IProduct, ProductModificationStatus } from "../models/product.interface";
 
 
 
 const initialState: IProductState = {
+    modificationState: ProductModificationStatus.None,
     editProduct: null,
     products: [{
         id: 1, name: "Chocolate", description: "This is Chocolate and it is Sweet",
@@ -49,6 +50,9 @@ function productsReducer(state: IProductState = initialState, action: IActionBas
         }
         case CLEAR_PRODUCT_PENDING_EDIT: {
             return { ...state, editProduct: null };
+        }
+        case SET_MODIFICATION_STATE: {
+            return { ...state, modificationState: action.value };
         }
         default:
             return state;

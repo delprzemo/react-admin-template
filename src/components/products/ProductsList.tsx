@@ -1,7 +1,8 @@
 import React, { Dispatch } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IStateType, IProductState } from "../../store/models/root.interfaces";
-import { changeProductPendingEdit } from "../../store/actions/products.action";
+import { changeProductPendingEdit, setModificationState } from "../../store/actions/products.action";
+import { ProductModificationStatus } from "../../store/models/product.interface";
 
 const ProductList: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -10,7 +11,10 @@ const ProductList: React.FC = () => {
   const productElements: (JSX.Element | null)[] = products.products.map(product => {
     if (!product) { return null; };
     return (<tr className={`table-row ${(products.editProduct && products.editProduct.id === product.id) ? "selected" : ""}`}
-      onClick={() => { dispatch(changeProductPendingEdit(product)); }}
+      onClick={() => { 
+        dispatch(changeProductPendingEdit(product)); 
+        dispatch(setModificationState(ProductModificationStatus.None));
+      }}
       key={`product_${product.id}`}>
       <th scope="row">{product.id}</th>
       <td>{product.name}</td>

@@ -7,3 +7,9 @@ export interface IProduct {
     price: number;
     hasExpiryDate: boolean;
 }
+
+export enum ProductModificationStatus {
+    None = 0,
+    Create = 1,
+    Edit = 2
+}

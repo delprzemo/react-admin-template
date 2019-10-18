@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
 import { IProductState, IStateType } from "../../store/models/root.interfaces";
 import Popup from "reactjs-popup";
-import { removeProduct, clearProductPendingEdit } from "../../store/actions/products.action";
+import { removeProduct, clearProductPendingEdit, setModificationState } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
+import { ProductModificationStatus } from "../../store/models/product.interface";
 
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -33,10 +34,12 @@ const Products: React.FC = () => {
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">Product List</h6>
               <div className="header-buttons">
-                <button className="btn btn-success btn-green">
+                <button className="btn btn-success btn-green" onClick={() =>
+                  dispatch(setModificationState(ProductModificationStatus.Create))}>
                   <i className="fas fa fa-plus"></i>
                 </button>
-                <button className="btn btn-success btn-blue">
+                <button className="btn btn-success btn-blue" onClick={() =>
+                  dispatch(setModificationState(ProductModificationStatus.Edit))}>
                   <i className="fas fa fa-pen"></i>
                 </button>
                 <button className="btn btn-success btn-red" onClick={() => setPopup(true)}>
@@ -49,7 +52,8 @@ const Products: React.FC = () => {
             </div>
           </div>
         </div>
-        {(products.editProduct) ? <ProductForm /> : null}
+        {(products.editProduct && products.modificationState !== ProductModificationStatus.None) ?
+          <ProductForm /> : null}
       </div>
 
 
