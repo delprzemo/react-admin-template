@@ -6,6 +6,7 @@ import { changeProductPendingEdit } from "../../store/actions/products.action";
 const ProductList: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState = useSelector((state: IStateType) => state.products);
+  
   const productElements: (JSX.Element | null)[] = products.products.map(product => {
     if (!product) { return null; };
     return (<tr className={`table-row ${(products.editProduct && products.editProduct.id === product.id) ? "selected" : ""}`}

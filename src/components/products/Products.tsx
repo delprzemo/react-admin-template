@@ -1,13 +1,14 @@
 import React, { Fragment, Dispatch, useState } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
-import Card from "../../common/elements/Card";
+import Card from "../../common/elements/card";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
 import { IProductState, IStateType } from "../../store/models/root.interfaces";
 import Popup from "reactjs-popup";
 import { removeProduct, clearProductPendingEdit } from "../../store/actions/products.action";
+import { addNotification } from "../../store/actions/notifications.action";
 
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -69,6 +70,7 @@ const Products: React.FC = () => {
                 if (!products.editProduct) {
                   return;
                 }
+                dispatch(addNotification("Product removed", `Product ${products.editProduct.name} was removed`))
                 dispatch(removeProduct(products.editProduct.id));
                 dispatch(clearProductPendingEdit());
                 setPopup(false);

@@ -33,7 +33,7 @@ function productsReducer(state: IProductState = initialState, action: IActionBas
     switch (action.type) {
         case ADD_PRODUCT: {
             state.products.push(action.product);
-            return { ...state, };
+            return { ...state};
         }
         case EDIT_PRODUCT: {
             const foundIndex: number = state.products.findIndex(pr => pr.id === action.product.id);

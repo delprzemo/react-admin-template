@@ -35,7 +35,7 @@ body {
 }
 
 .toast-wrapper {
-    position: absolute;
+    position: fixed;
     top     : 30px;
     right   : 30px;
     z-index: 100 !important;
@@ -43,6 +43,7 @@ body {
 
 .toast {
     opacity: 0.95 !important;
+    width: 250px;
 }
 
 .toast-header {

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IProduct } from "../../store/models/product.interface";
 import TextInput, { OnChangeModel } from "../../common/elements/TextInput";
 import { editProduct, clearProductPendingEdit } from "../../store/actions/products.action";
+import { addNotification } from "../../store/actions/notifications.action";
 
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -29,6 +30,10 @@ const ProductForm: React.FC = () => {
         name: formState.name.value,
         description: formState.description.value
       }));
+
+      dispatch(addNotification("Product edited", `Product ${formState.name.value} edited by you`))
+      dispatch(clearProductPendingEdit());
+      
     }
   }
 
