@@ -1,55 +1,62 @@
 import React, { useState, FormEvent, Dispatch, Fragment } from "react";
-import { IStateType } from "../../store/models/root.interfaces";
+import { IStateType, IProductState } from "../../store/models/root.interfaces";
 import { useSelector, useDispatch } from "react-redux";
 import { IProduct, ProductModificationStatus } from "../../store/models/product.interface";
-import TextInput, { OnChangeModel } from "../../common/elements/TextInput";
-import { editProduct, clearProductPendingEdit, setModificationState } from "../../store/actions/products.action";
+import TextInput from "../../common/elements/TextInput";
+import { editProduct, clearProductPendingEdit, setModificationState, addProduct } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
 import NumberInput, { OnChangeNumberModel } from "../../common/elements/NumberInput";
 import Checkbox, { OnChangeCheckboxModel } from "../../common/elements/Checkbox";
 import SelectInput from "../../common/elements/Select";
+import { OnChangeModel } from "../../common/models/Form.models";
 
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
-  const product: IProduct | null = useSelector((state: IStateType) => state.products.editProduct);
+  const products: IProductState | null = useSelector((state: IStateType) => state.products);
+  let product: IProduct | null = products.editProduct;
+  const isCreate: boolean = (products.modificationState === ProductModificationStatus.Create);
+
+  type FormStateField = {error: string, value: string | number | boolean};
+
+  interface IFormState {
+    name: FormStateField;
+    description: FormStateField;
+    amount: FormStateField;
+    price: FormStateField;
+    hasExpiryDate: FormStateField;
+    category: FormStateField;
+  }
+
+  if (!product || isCreate) {
+    product = { id: 0, name: "", description: "", amount: 0, price: 0, hasExpiryDate: false, category: "" };
+  }
+
   const [formState, setFormState] = useState({
-    name: { error: "", value: product ? product.name : "" },
-    description: { error: "", value: product ? product.description : "" },
-    amount: { error: "", value: product ? product.amount : 0 },
-    price: { error: "", value: product ? product.price : 0 },
-    hasExpiryDate: { error: "", value: product ? product.hasExpiryDate : false },
-    category: { error: "", value: product ? product.category : "" }
+    name: { error: "", value: product.name },
+    description: { error: "", value: product.description },
+    amount: { error: "", value: product.amount },
+    price: { error: "", value: product.price },
+    hasExpiryDate: { error: "", value: product.hasExpiryDate },
+    category: { error: "", value: product.category }
   });
 
-  function hasExpiryDateChanged(model: OnChangeCheckboxModel): void {
-    setFormState({ ...formState, hasExpiryDate: { error: model.error, value: model.value } });
-  }
-
-  function onNameChange(model: OnChangeModel): void {
-    setFormState({ ...formState, name: { error: model.error, value: model.value } });
-  }
-
-  function onDescriptionChange(model: OnChangeModel): void {
-    setFormState({ ...formState, description: { error: model.error, value: model.value } });
-  }
-
-  function onAmountChange(model: OnChangeNumberModel): void {
-    setFormState({ ...formState, amount: { error: model.error, value: model.value } });
-  }
-
-  function onPriceChange(model: OnChangeNumberModel): void {
-    setFormState({ ...formState, price: { error: model.error, value: model.value } });
-  }
-
-  function onCategoryChange(model: OnChangeModel): void {
-    setFormState({ ...formState, category: { error: model.error, value: model.value } });
+  function hasFormValueChanged(model: OnChangeModel): void {
+    setFormState({ ...formState, [model.field]: { error: model.error, value: model.value } });
   }
 
   function saveUser(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    if (getDisabledClass()) return;
+    if (getDisabledClass()) {
+      return;
+    }
+
+    let saveUserFn: Function = (isCreate) ? addProduct : editProduct;
+    saveForm(formState, saveUserFn);
+  }
+
+  function saveForm(formState: IFormState, saveFn: Function): void {
     if (product) {
-      dispatch(editProduct({
+      dispatch(saveFn({
         ...product,
         name: formState.name.value,
         description: formState.description.value,
@@ -61,18 +68,18 @@ const ProductForm: React.FC = () => {
 
       dispatch(addNotification("Product edited", `Product ${formState.name.value} edited by you`))
       dispatch(clearProductPendingEdit());
-      dispatch(setModificationState(ProductModificationStatus.None))
+      dispatch(setModificationState(ProductModificationStatus.None));
     }
   }
 
   function cancelForm(): void {
-    dispatch(setModificationState(ProductModificationStatus.None))
+    dispatch(setModificationState(ProductModificationStatus.None));
   }
 
   function getDisabledClass(): string {
     let isError = (formState.amount.error || formState.description.error
       || formState.name.error || formState.price.error || formState.hasExpiryDate.error
-      || formState.category.error)
+      || formState.category.error || !formState.name.value || !formState.category.value);
 
     return isError ? "disabled" : "";
   }
@@ -82,7 +89,7 @@ const ProductForm: React.FC = () => {
       <div className="col-xl-7 col-lg-7">
         <div className="card shadow mb-4">
           <div className="card-header py-3">
-            <h6 className="m-0 font-weight-bold text-primary">Product Edit</h6>
+            <h6 className="m-0 font-weight-bold text-primary">Product {(isCreate ? "create" : "edit")}</h6>
           </div>
           <div className="card-body">
             <form onSubmit={saveUser}>
@@ -90,7 +97,8 @@ const ProductForm: React.FC = () => {
                 <div className="form-group col-md-6">
                   <TextInput id="input_email"
                     value={formState.name.value}
-                    onChange={onNameChange}
+                    field="name"
+                    onChange={hasFormValueChanged}
                     required={true}
                     maxLength={20}
                     label="Name"
@@ -99,18 +107,20 @@ const ProductForm: React.FC = () => {
                 <div className="form-group col-md-6">
                   <SelectInput
                     id="input_category"
+                    field="category"
                     label="Category"
                     options={["Fruit", "Sweet", "Kitchen"]}
                     required={true}
-                    onChange={onCategoryChange}
+                    onChange={hasFormValueChanged}
                     value={formState.category.value}
                   />
                 </div>
               </div>
               <div className="form-group">
                 <TextInput id="input_description"
+                field = "description"
                   value={formState.description.value}
-                  onChange={onDescriptionChange}
+                  onChange={hasFormValueChanged}
                   required={false}
                   maxLength={100}
                   label="Description"
@@ -120,7 +130,8 @@ const ProductForm: React.FC = () => {
                 <div className="form-group col-md-6">
                   <NumberInput id="input_amount"
                     value={formState.amount.value}
-                    onChange={onAmountChange}
+                    field="amount"
+                    onChange={hasFormValueChanged}
                     max={1000}
                     min={0}
                     label="Amount" />
@@ -128,7 +139,8 @@ const ProductForm: React.FC = () => {
                 <div className="form-group col-md-6">
                   <NumberInput id="input_price"
                     value={formState.price.value}
-                    onChange={onPriceChange}
+                    field="price"
+                    onChange={hasFormValueChanged}
                     max={1000}
                     min={0}
                     label="Price" />
@@ -137,9 +149,10 @@ const ProductForm: React.FC = () => {
               <div className="form-group">
                 <Checkbox
                   id="checkbox_expiry"
+                  field="hasExpiryDate"
                   value={formState.hasExpiryDate.value}
                   label="Has expiry date"
-                  onChange={hasExpiryDateChanged}
+                  onChange={hasFormValueChanged}
                 />
               </div>
               <button className="btn btn-danger" onClick={() => cancelForm()}>Cancel</button>

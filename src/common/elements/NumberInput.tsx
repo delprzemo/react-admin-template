@@ -7,7 +7,8 @@ export type NumberInputProps = {
     value: number,
     max?: number,
     min?: number,
-    inputClass?: string
+    inputClass?: string,
+    field: string
 };
 
 export type OnChangeNumberModel = {
@@ -24,7 +25,8 @@ function NumberInput(props: NumberInputProps): JSX.Element {
 
 
     function onValueChanged(event: ChangeEvent<HTMLInputElement>): void {
-        let [error, validClass, elementValue] = ["", "", parseInt(event.target.value, 10)];
+        let elementValue: number = (isNaN(Number(event.target.value))) ? 0 : Number(event.target.value);
+        let [error, validClass] = ["", ""];
 
         if (!error) {
             [error, validClass] = ((props.max != null) && elementValue > (props.max)) ?
@@ -36,7 +38,7 @@ function NumberInput(props: NumberInputProps): JSX.Element {
             [`Value can't be lower than ${props.min} `, "is-invalid"] : ["", "is-valid"];
         }
 
-        props.onChange({ value: elementValue, error: error, touched: touched });
+        props.onChange({ value: elementValue, error: error, touched: touched, field: props.field });
 
         setTouch(true);
         setError(error);

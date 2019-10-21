@@ -1,7 +1,7 @@
 import React, { Fragment, Dispatch, useState } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
-import Card from "../../common/elements/card";
+import Card from "../../common/elements/Card";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
@@ -14,6 +14,9 @@ import { ProductModificationStatus } from "../../store/models/product.interface"
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState = useSelector((state: IStateType) => state.products);
+  const numberItemsCount: number = products.products.length;
+  const totalPrice: number = products.products.reduce((prev, next) => prev + ((next.price * next.amount) || 0), 0);
+  const totalAmount: number = products.products.reduce((prev, next) => prev + (next.amount || 0), 0);
   const [popup, setPopup] = useState(false);
 
   dispatch(updateCurrentPath("products", "list"));
@@ -23,9 +26,9 @@ const Products: React.FC = () => {
       <p className="mb-4">Products here</p>
 
       <div className="row">
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="calendar" class="primary" />
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="store" class="success" />
-        <Card title="EARNINGS (MONTHLY)" text="$40.000" icon="pen" class="danger" />
+        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="calendar" class="primary" />
+        <Card title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="pen" class="danger" />
+        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="store" class="success" />
       </div>
 
       <div className="row">
@@ -52,7 +55,8 @@ const Products: React.FC = () => {
             </div>
           </div>
         </div>
-        {(products.editProduct && products.modificationState !== ProductModificationStatus.None) ?
+        {((products.modificationState === ProductModificationStatus.Create)
+          || (products.modificationState === ProductModificationStatus.Edit && products.editProduct)) ?
           <ProductForm /> : null}
       </div>
 
@@ -74,7 +78,7 @@ const Products: React.FC = () => {
                 if (!products.editProduct) {
                   return;
                 }
-                dispatch(addNotification("Product removed", `Product ${products.editProduct.name} was removed`))
+                dispatch(addNotification("Product removed", `Product ${products.editProduct.name} was removed`));
                 dispatch(removeProduct(products.editProduct.id));
                 dispatch(clearProductPendingEdit());
                 setPopup(false);

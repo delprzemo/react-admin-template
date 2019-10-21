@@ -7,7 +7,8 @@ export type SelectProps = {
     label: string,
     value: string,
     inputClass?: string,
-    options: string[];
+    options: string[],
+    field: string
 };
 
 function SelectInput(props: SelectProps): JSX.Element {
@@ -24,7 +25,7 @@ function SelectInput(props: SelectProps): JSX.Element {
             ["Value has to be selected", "is-invalid"] : ["", "is-valid"];
 
 
-        props.onChange({ value: elementValue, error: error, touched: touched });
+        props.onChange({ value: elementValue, error: error, touched: touched, field: props.field });
 
         setTouch(true);
         setError(error);

@@ -6,7 +6,8 @@ export type CheckboxProps = {
     id: string,
     label: string,
     value: boolean,
-    inputClass?: string
+    inputClass?: string,
+    field: string
 };
 
 export type OnChangeCheckboxModel = {
@@ -29,7 +30,7 @@ function Checkbox(props: CheckboxProps): JSX.Element {
             ["Value has to be checked", "is-invalid"] : ["", "is-valid"];
 
 
-        props.onChange({ value: elementValue, error: error, touched: touched });
+        props.onChange({ value: elementValue, error: error, touched: touched, field: props.field });
 
         setTouch(true);
         setError(error);

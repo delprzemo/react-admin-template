@@ -33,6 +33,8 @@ const initialState: IProductState = {
 function productsReducer(state: IProductState = initialState, action: IActionBase): IProductState {
     switch (action.type) {
         case ADD_PRODUCT: {
+            let maxId: number = Math.max.apply(Math, state.products.map(function(o) { return o.id; }));
+            action.product.id = maxId + 1;
             state.products.push(action.product);
             return { ...state};
         }

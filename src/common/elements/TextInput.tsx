@@ -9,13 +9,8 @@ export type TextInputProps = {
     value: string,
     type?: string,
     maxLength: number,
-    inputClass?: string
-};
-
-export type OnChangeModel = {
-    value: string,
-    error: string,
-    touched: boolean
+    inputClass?: string,
+    field: string
 };
 
 function TextInput(props: TextInputProps): JSX.Element {
@@ -36,7 +31,7 @@ function TextInput(props: TextInputProps): JSX.Element {
             [`Value can't have more than ${props.maxLength} characters`, "is-invalid"] : ["", "is-valid"];
         }
 
-        props.onChange({ value: elementValue, error: error, touched: touched });
+        props.onChange({ value: elementValue, error: error, touched: touched, field: props.field });
 
         setTouch(true);
         setError(error);
