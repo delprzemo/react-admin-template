@@ -1,29 +1,29 @@
 
 import React, { Fragment, useState } from "react";
 import Card from "../../common/elements/Card";
-import {GetUsers, GetAdmins, GetSuperAdmin} from "./Users.service"
+import {GetUsers, GetAdmins, GetSuperAdmin, UserModel, HttpResponse} from "./Users.service"
 
-const Users = () => {
+const Users: React.FC = () => {
 
-  const usersData = GetUsers().result;
-  const adminData = GetAdmins().result;
-  const superAdmin = GetSuperAdmin("firstName").result;
-  
+  const usersData: UserModel[] = GetUsers().result;
+  const adminData: UserModel[]  = GetAdmins().result;
+  const superAdmin: string | null = GetSuperAdmin("firstName").result;
+
   const [users, setUsers] = useState(usersData);
   const [admins, setAdmins] = useState(adminData);
 
-  function setUserAdmin(user) {
+  function setUserAdmin(user: UserModel): void {
     setUsers([...users.filter(x=>x.id !== user.id)]);
     setAdmins([...admins, user]);
   }
 
-  function setUserNotAdmin(admin) {
+  function setUserNotAdmin(admin: UserModel): void {
     setUsers([...users, admin]);
     setAdmins([...admins.filter(x=>x.id !== admin.id)]);
   }
 
 
-  const userElements = users.map(user => {
+  const userElements: JSX.Element[] = users.map(user => {
     return (
       <tr className={`table-row`}
         key={`user_${user.id}`}>
@@ -35,7 +35,7 @@ const Users = () => {
       </tr>);
   });
 
-  const adminElements = admins.map(admin => {
+  const adminElements: JSX.Element[] = admins.map(admin => {
     return (
       <tr className={`table-row`}
         key={`user_${admin.id}`}>
@@ -54,9 +54,9 @@ const Users = () => {
       <p className="mb-4">Users here</p>
 
       <div className="row">
-        <Card title="ADMINS" text={admins.length} icon="calendar" className="primary" />
-        <Card title="USER" text={users.length} icon="pen" className="danger" />
-        <Card title="SUPER ADMIN" text={superAdmin} icon="pen" className="danger" />
+        <Card title="ADMINS" text={admins.length.toString()} icon="calendar" class="primary" />
+        <Card title="USER" text={users.length.toString()} icon="pen" class="danger" />
+        <Card title="SUPER ADMIN" text={(superAdmin) ? superAdmin.toString() : "Not found"} icon="pen" class="danger" />
       </div>
 
       <div className="row">
