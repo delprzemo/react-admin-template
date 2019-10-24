@@ -13,13 +13,15 @@ const Users = () => {
   const [admins, setAdmins] = useState(adminData);
 
   function setUserAdmin(user) {
-    setUsers([...users.filter(x=>x.id !== user.id)]);
-    setAdmins([...admins, user]);
+    // Exercise
+    // setUsers(CODE_HERE)
+    // setAdmins(CODE_HERE)
   }
 
   function setUserNotAdmin(admin) {
-    setUsers([...users, admin]);
-    setAdmins([...admins.filter(x=>x.id !== admin.id)]);
+    // Exercise
+    // setUsers(CODE_HERE)
+    // setAdmins(CODE_HERE)
   }
 
 

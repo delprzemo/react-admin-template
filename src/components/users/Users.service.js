@@ -1,6 +1,3 @@
-import { tsNeverKeyword } from "@babel/types";
-
-
 export function GetUsers() {
     const usersData = [
         { id: 1, firstName: 'John', lastName: 'Smith', email: 'jsmith@em.pl', },
