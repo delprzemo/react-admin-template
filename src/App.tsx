@@ -7,12 +7,13 @@ import Home from "./components/Home";
 import Products from "./components/products/Products";
 import Notifications from "./common/elements/notifications";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Users from "./components/users/Users";
 
 const App: React.FC = () => {
   return (
     <div className="App" id="wrapper">
 
-      <Notifications/>
+      <Notifications />
 
       <Router>
         <LeftMenu />
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <TopMenu />
             <div className="container-fluid">
               <Switch>
+                <Route path="/users"><Users /></Route>
                 <Route path="/products"><Products /></Route>
                 <Route path="/"><Home /></Route>
               </Switch>
