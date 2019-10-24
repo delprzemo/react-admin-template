@@ -1,16 +1,14 @@
 
 import React, { Fragment, useState } from "react";
 import Card from "../../common/elements/Card";
+import {GetUsers, GetAdmins, GetSuperAdmin} from "./Users.service"
 
 const Users = () => {
-  const usersData = [
-    { id: 1, firstName: 'John', lastName: 'Smith', email: 'jsmith@em.pl', },
-    { id: 3, firstName: 'Jannice', lastName: 'Bing', email: 'ohmy@fr.pl' }]
 
-  const adminData = [
-    { id: 2, firstName: 'Eva', lastName: 'Lopez', email: 'eval@em.pl', isAdmin: true }
-  ];
-
+  const usersData = GetUsers().result;
+  const adminData = GetAdmins().result;
+  const superAdmin = GetSuperAdmin("firstName").result;
+  
   const [users, setUsers] = useState(usersData);
   const [admins, setAdmins] = useState(adminData);
 
@@ -18,10 +16,12 @@ const Users = () => {
     setUsers([...users.filter(x=>x.id !== user.id)]);
     setAdmins([...admins, user]);
   }
+
   function setUserNotAdmin(admin) {
     setUsers([...users, admin]);
     setAdmins([...admins.filter(x=>x.id !== admin.id)]);
   }
+
 
   const userElements = users.map(user => {
     return (
@@ -56,7 +56,7 @@ const Users = () => {
       <div className="row">
         <Card title="ADMINS" text={admins.length} icon="calendar" className="primary" />
         <Card title="USER" text={users.length} icon="pen" className="danger" />
-        <Card title="SUMMARY PRICE" text={`44`} icon="store" className="success" />
+        <Card title="SUPER ADMIN" text={superAdmin} icon="pen" className="danger" />
       </div>
 
       <div className="row">
