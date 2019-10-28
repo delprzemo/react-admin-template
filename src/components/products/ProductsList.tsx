@@ -2,18 +2,24 @@ import React, { Dispatch } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IStateType, IProductState } from "../../store/models/root.interfaces";
 import { changeProductPendingEdit, setModificationState } from "../../store/actions/products.action";
-import { ProductModificationStatus } from "../../store/models/product.interface";
+import { ProductModificationStatus, IProduct } from "../../store/models/product.interface";
 
-const ProductList: React.FC = () => {
+
+export type productListProps = {
+  onSelect: (product: IProduct) => void;
+  children?: React.ReactNode;
+};
+
+function ProductList(props: productListProps): JSX.Element  {
   const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState = useSelector((state: IStateType) => state.products);
-  
+
   const productElements: (JSX.Element | null)[] = products.products.map(product => {
     if (!product) { return null; };
-    return (<tr className={`table-row ${(products.editProduct && products.editProduct.id === product.id) ? "selected" : ""}`}
-      onClick={() => { 
-        dispatch(changeProductPendingEdit(product)); 
-        dispatch(setModificationState(ProductModificationStatus.None));
+    return (<tr className={`table-row ${(products.selectedProduct && products.selectedProduct.id === product.id) ? "selected" : ""}`}
+      onClick={() => {
+        props.onSelect(product); 
+
       }}
       key={`product_${product.id}`}>
       <th scope="row">{product.id}</th>
@@ -22,9 +28,7 @@ const ProductList: React.FC = () => {
       <td>{product.amount}</td>
       <td>{product.price}</td>
     </tr>);
-  }
-
-  );
+  });
 
 
   return (

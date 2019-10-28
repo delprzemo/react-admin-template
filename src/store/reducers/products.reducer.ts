@@ -7,7 +7,7 @@ import { IProduct, ProductModificationStatus } from "../models/product.interface
 
 const initialState: IProductState = {
     modificationState: ProductModificationStatus.None,
-    editProduct: null,
+    selectedProduct: null,
     products: [{
         id: 1, name: "Chocolate", description: "This is Chocolate and it is Sweet",
         amount: 10, price: 4, hasExpiryDate: true, category: "Sweet"
@@ -48,10 +48,10 @@ function productsReducer(state: IProductState = initialState, action: IActionBas
             return { ...state, products: state.products.filter(pr => pr.id !== action.id) };
         }
         case CHANGE_PRODUCT_PENDING_EDIT: {
-            return { ...state, editProduct: action.product };
+            return { ...state, selectedProduct: action.product };
         }
         case CLEAR_PRODUCT_PENDING_EDIT: {
-            return { ...state, editProduct: null };
+            return { ...state, selectedProduct: null };
         }
         case SET_MODIFICATION_STATE: {
             return { ...state, modificationState: action.value };

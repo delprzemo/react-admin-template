@@ -1,4 +1,4 @@
-import React, { Fragment, Dispatch } from "react";
+import React, { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IStateType } from "../../store/models/root.interfaces";
 import { INotification } from "../../store/models/notification.interface";

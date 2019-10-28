@@ -49,3 +49,7 @@ body {
 .toast-header {
     color: dodgerblue !important;
 }
+
+.card-bottom-list {
+    max-height: 303px;
+}

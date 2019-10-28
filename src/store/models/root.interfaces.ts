@@ -19,7 +19,7 @@ export interface IStateType {
 
 export interface IProductState {
     products: IProduct[];
-    editProduct: IProduct | null;
+    selectedProduct: IProduct | null;
     modificationState: ProductModificationStatus;
 }
 

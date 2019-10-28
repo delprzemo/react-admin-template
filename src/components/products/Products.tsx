@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
 import { IProductState, IStateType } from "../../store/models/root.interfaces";
 import Popup from "reactjs-popup";
-import { removeProduct, clearProductPendingEdit, setModificationState } from "../../store/actions/products.action";
+import { removeProduct, clearProductPendingEdit, setModificationState, changeProductPendingEdit } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
-import { ProductModificationStatus } from "../../store/models/product.interface";
+import { ProductModificationStatus, IProduct } from "../../store/models/product.interface";
 
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -18,6 +18,11 @@ const Products: React.FC = () => {
   const totalPrice: number = products.products.reduce((prev, next) => prev + ((next.price * next.amount) || 0), 0);
   const totalAmount: number = products.products.reduce((prev, next) => prev + (next.amount || 0), 0);
   const [popup, setPopup] = useState(false);
+
+  function onProductSelect(product: IProduct) {
+    dispatch(changeProductPendingEdit(product));
+    dispatch(setModificationState(ProductModificationStatus.None));
+  }
 
   dispatch(updateCurrentPath("products", "list"));
   return (
@@ -51,12 +56,14 @@ const Products: React.FC = () => {
               </div>
             </div>
             <div className="card-body">
-              <ProductList />
+              <ProductList 
+                onSelect={onProductSelect}
+              />
             </div>
           </div>
         </div>
         {((products.modificationState === ProductModificationStatus.Create)
-          || (products.modificationState === ProductModificationStatus.Edit && products.editProduct)) ?
+          || (products.modificationState === ProductModificationStatus.Edit && products.selectedProduct)) ?
           <ProductForm /> : null}
       </div>
 
@@ -75,11 +82,11 @@ const Products: React.FC = () => {
             <button type="button"
               className="btn btn-danger"
               onClick={() => {
-                if (!products.editProduct) {
+                if (!products.selectedProduct) {
                   return;
                 }
-                dispatch(addNotification("Product removed", `Product ${products.editProduct.name} was removed`));
-                dispatch(removeProduct(products.editProduct.id));
+                dispatch(addNotification("Product removed", `Product ${products.selectedProduct.name} was removed`));
+                dispatch(removeProduct(products.selectedProduct.id));
                 dispatch(clearProductPendingEdit());
                 setPopup(false);
               }}>Remove

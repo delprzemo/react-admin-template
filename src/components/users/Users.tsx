@@ -5,10 +5,13 @@ import { IUser } from "../../store/models/user.interface";
 import { useDispatch, useSelector } from "react-redux";
 import { IStateType } from "../../store/models/root.interfaces";
 import { addAdmin, removeAdmin } from "../../store/actions/users.action";
+import { updateCurrentPath } from "../../store/actions/root.actions";
 
 const Users: React.FC = () => {
 
   const dispatch: Dispatch<any> = useDispatch();
+  dispatch(updateCurrentPath("user", "list"));
+  
   const users: IUser[] = useSelector((state: IStateType) => state.users.users);
   const admins: IUser[] = useSelector((state: IStateType) => state.users.admins);
 
@@ -17,7 +20,7 @@ const Users: React.FC = () => {
   }
 
   function setUserNotAdmin(admin: IUser): void {
-    dispatch(removeAdmin(admin));
+    dispatch(removeAdmin(admin)); 
   }
 
 

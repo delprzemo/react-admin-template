@@ -35,9 +35,10 @@ const LeftMenu: React.FC = () => {
             </li>
 
             <li className="nav-item">
-                <a className="nav-link" href="tables.html">
-                    <i className="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <Link className="nav-link" to="orders">
+                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Orders</span>
+                </Link>
             </li>
 
             <hr className="sidebar-divider" />

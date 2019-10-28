@@ -5,9 +5,10 @@ import LeftMenu from "./components/LeftMenu";
 import TopMenu from "./components/topMenu/TopMenu";
 import Home from "./components/Home";
 import Products from "./components/products/Products";
-import Notifications from "./common/elements/notifications";
+import Notifications from "./common/elements/Notifications";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Users from "./components/users/Users";
+import Orders from "./components/orders/Orders";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
               <Switch>
                 <Route path="/users"><Users /></Route>
                 <Route path="/products"><Products /></Route>
+                <Route path="/orders"><Orders /></Route>
                 <Route path="/"><Home /></Route>
               </Switch>
             </div>

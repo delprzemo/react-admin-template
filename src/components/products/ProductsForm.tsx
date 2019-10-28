@@ -13,7 +13,7 @@ import { OnChangeModel } from "../../common/models/Form.models";
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState | null = useSelector((state: IStateType) => state.products);
-  let product: IProduct | null = products.editProduct;
+  let product: IProduct | null = products.selectedProduct;
   const isCreate: boolean = (products.modificationState === ProductModificationStatus.Create);
 
   type FormStateField = {error: string, value: string | number | boolean};
