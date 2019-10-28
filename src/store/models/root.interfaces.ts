@@ -1,5 +1,6 @@
 import { IProduct, ProductModificationStatus } from "./product.interface";
 import { INotification } from "./notification.interface";
+import { IUser } from "./user.interface";
 
 export interface IRootPageStateType {
     area: string;
@@ -13,6 +14,7 @@ export interface IStateType {
     root: IRootStateType;
     products: IProductState;
     notifications: INotificationState;
+    users: IUserState;
 }
 
 export interface IProductState {
@@ -28,4 +30,9 @@ export interface IActionBase {
 
 export interface INotificationState {
     notifications: INotification[];
+}
+
+export interface IUserState {
+    users: IUser[];
+    admins: IUser[];
 }

@@ -43,20 +43,15 @@ const LeftMenu: React.FC = () => {
             <hr className="sidebar-divider" />
 
             <div className="sidebar-heading">
-                Addons
+                Admin
             </div>
 
 
             <li className="nav-item">
-                <a className="nav-link" href="charts.html">
-                    <i className="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <li className="nav-item">
-                <a className="nav-link" href="tables.html">
-                    <i className="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <Link className="nav-link" to="users">
+                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span>
+                </Link>
             </li>
 
             <hr className="sidebar-divider d-none d-md-block" />
