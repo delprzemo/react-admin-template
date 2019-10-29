@@ -5,6 +5,7 @@ import productsReducer from "./products.reducer";
 import notificationReducer from "./notification.reducer";
 import userReducer from "./users.reducer";
 import orderReducer from "./order.reducer";
+import accountReducer from "./account.reducer";
 
 
 const initialState: IRootStateType = {
@@ -24,7 +25,8 @@ const rootReducers: any = combineReducers({root: rootReducer,
     products: productsReducer,
     notifications: notificationReducer,
     users: userReducer,
-    orders: orderReducer
+    orders: orderReducer,
+    account: accountReducer
 });
 
 

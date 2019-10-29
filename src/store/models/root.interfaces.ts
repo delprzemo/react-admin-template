@@ -2,6 +2,7 @@ import { IProduct, ProductModificationStatus } from "./product.interface";
 import { INotification } from "./notification.interface";
 import { IUser } from "./user.interface";
 import { IOrder } from "./order.interfaces";
+import { IAccount } from "./account.interface";
 
 export interface IRootPageStateType {
     area: string;
@@ -17,6 +18,7 @@ export interface IStateType {
     notifications: INotificationState;
     users: IUserState;
     orders: IOrdersState;
+    account: IAccount;
 }
 
 export interface IProductState {

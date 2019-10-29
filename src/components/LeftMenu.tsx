@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch, match } from "react-router-dom";
 
 const LeftMenu: React.FC = () => {
+    let match: match<{}> = useRouteMatch() as match<{}>;
+
     return (
         <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -28,14 +30,14 @@ const LeftMenu: React.FC = () => {
             </div>
 
             <li className="nav-item">
-                <Link className="nav-link" to="products">
+                <Link className="nav-link" to={`${match.url}/products`}>
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Products</span>
                 </Link>
             </li>
 
             <li className="nav-item">
-                <Link className="nav-link" to="orders">
+                <Link className="nav-link" to={`${match.url}/orders`}>
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Orders</span>
                 </Link>
@@ -49,7 +51,7 @@ const LeftMenu: React.FC = () => {
 
 
             <li className="nav-item">
-                <Link className="nav-link" to="users">
+                <Link className="nav-link" to={`${match.url}/users`}>
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Users</span>
                 </Link>
