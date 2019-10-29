@@ -1,8 +1,7 @@
-import React, { Dispatch } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { IStateType, IProductState } from "../../store/models/root.interfaces";
-import { changeProductPendingEdit, setModificationState } from "../../store/actions/products.action";
-import { ProductModificationStatus, IProduct } from "../../store/models/product.interface";
+import { IProduct } from "../../store/models/product.interface";
 
 
 export type productListProps = {
@@ -11,14 +10,13 @@ export type productListProps = {
 };
 
 function ProductList(props: productListProps): JSX.Element  {
-  const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState = useSelector((state: IStateType) => state.products);
 
   const productElements: (JSX.Element | null)[] = products.products.map(product => {
-    if (!product) { return null; };
+    if (!product) { return null; }
     return (<tr className={`table-row ${(products.selectedProduct && products.selectedProduct.id === product.id) ? "selected" : ""}`}
       onClick={() => {
-        props.onSelect(product); 
+        props.onSelect(product);
 
       }}
       key={`product_${product.id}`}>
@@ -50,6 +48,6 @@ function ProductList(props: productListProps): JSX.Element  {
     </div>
 
   );
-};
+}
 
 export default ProductList;

@@ -7,13 +7,19 @@ import Card from "../../common/elements/Card";
 import OrderForm from "./OrderForm";
 import ProductList from "../products/ProductsList";
 import { IProduct } from "../../store/models/product.interface";
+import { changeSelectedProduct, clearSelectedProduct } from "../../store/actions/products.action";
+import { IStateType } from "../../store/models/root.interfaces";
 
 const Orders: React.FC = () => {
     const dispatch: Dispatch<any> = useDispatch();
+    const orders: IOrder[] = useSelector((state: IStateType) => state.orders.orders);
+    const totalSales: number = orders.reduce((prev, next) => prev + next.totalPrice, 0);
+    const totalAmount: number = orders.reduce((prev, next) => prev + next.amount, 0);
     dispatch(updateCurrentPath("orders", "list"));
+    dispatch(clearSelectedProduct());
 
-    function selectProduct(product: IProduct) {
-        console.log(product);
+    function selectProduct(product: IProduct): void {
+        dispatch(changeSelectedProduct(product));
     }
 
     return (
@@ -22,8 +28,8 @@ const Orders: React.FC = () => {
             <p className="mb-4">Users here</p>
 
             <div className="row">
-                <Card title="ADMINS" text={'some value'} icon="calendar" class="primary" />
-                <Card title="USER" text={'some value'} icon="pen" class="danger" />
+                <Card title="TOTAL SALES" text={totalSales.toString()} icon="calendar" class="primary" />
+                <Card title="TOTAL AMOUNT" text={totalAmount.toString()} icon="pen" class="danger" />
             </div>
 
             <div className="row">

@@ -11,9 +11,9 @@ const initialState: INotificationState = {
 function notificationReducer(state: INotificationState = initialState, action: IActionBase): INotificationState {
     switch (action.type) {
         case ADD_NOTIFICATION: {
-            let notifications = state.notifications;
-            let maxId = Math.max.apply(Math, state.notifications.map(function(o) { return o.id; }));
-            if(maxId === -Infinity) maxId = 0;
+            let notifications: INotification[] = state.notifications;
+            let maxId: number= Math.max.apply(Math, state.notifications.map(o =>  o.id));
+            if(maxId === -Infinity) { maxId = 0; }
             notifications.push({
                 id: maxId + 1,
                 date: new Date(),

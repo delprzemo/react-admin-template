@@ -4,6 +4,7 @@ import { IRootStateType, IActionBase } from "../models/root.interfaces";
 import productsReducer from "./products.reducer";
 import notificationReducer from "./notification.reducer";
 import userReducer from "./users.reducer";
+import orderReducer from "./order.reducer";
 
 
 const initialState: IRootStateType = {
@@ -22,7 +23,8 @@ function rootReducer(state: IRootStateType = initialState, action: IActionBase):
 const rootReducers: any = combineReducers({root: rootReducer,
     products: productsReducer,
     notifications: notificationReducer,
-    users: userReducer
+    users: userReducer,
+    orders: orderReducer
 });
 
 

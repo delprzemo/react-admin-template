@@ -1,6 +1,7 @@
 import { IProduct, ProductModificationStatus } from "./product.interface";
 import { INotification } from "./notification.interface";
 import { IUser } from "./user.interface";
+import { IOrder } from "./order.interfaces";
 
 export interface IRootPageStateType {
     area: string;
@@ -15,6 +16,7 @@ export interface IStateType {
     products: IProductState;
     notifications: INotificationState;
     users: IUserState;
+    orders: IOrdersState;
 }
 
 export interface IProductState {
@@ -26,6 +28,10 @@ export interface IProductState {
 export interface IActionBase {
     type: string;
     [prop: string]: any;
+}
+
+export interface IOrdersState {
+    orders: IOrder[];
 }
 
 export interface INotificationState {

@@ -1,21 +1,48 @@
-import React, { useState, FormEvent, Fragment } from "react";
+import React, { useState, FormEvent, Fragment, Dispatch } from "react";
 import { IProduct } from "../../store/models/product.interface";
 import TextInput from "../../common/elements/TextInput";
 import NumberInput from "../../common/elements/NumberInput";
 import { OnChangeModel } from "../../common/models/Form.models";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../../store/actions/orders.actions";
+import { addNotification } from "../../store/actions/notifications.action";
+import { clearSelectedProduct, changeProductAmount } from "../../store/actions/products.action";
+import { IStateType } from "../../store/models/root.interfaces";
 
 const OrderForm: React.FC = () => {
-
-    const initialFormState = {
+    const dispatch: Dispatch<any> = useDispatch();
+    const selectedProduct: IProduct | null = useSelector((state: IStateType) => state.products.selectedProduct);
+    const initialFormState: IFormState = {
         name: { error: "", value: "" },
         product: { error: "", value: null },
         amount: { error: "", value: 0 },
         totalPrice: { error: "", value: 0 },
     };
 
-    type FormStateField = { error: string, value: string | number | boolean | IProduct };
+    interface IFormState {
+        name: IFormStateField<string>;
+        product: IFormStateField<IProduct | null>;
+        amount: IFormStateField<number>;
+        totalPrice: IFormStateField<number>;
+    }
+
+    interface IFormStateField<T> { error: string; value: T; }
 
     const [formState, setFormState] = useState(initialFormState);
+
+    function hasAmountChanged(model: OnChangeModel): void {
+        let totalPrice: number = formState.totalPrice.value;
+        if (selectedProduct) {
+            totalPrice = selectedProduct.price * (model.value as number);
+        }
+
+        setFormState({
+            ...formState,
+            amount: { error: model.error, value: model.value as number },
+            totalPrice: { error: model.error, value: totalPrice }
+        });
+
+    }
 
     function hasFormValueChanged(model: OnChangeModel): void {
         setFormState({ ...formState, [model.field]: { error: model.error, value: model.value } });
@@ -31,15 +58,37 @@ const OrderForm: React.FC = () => {
             return;
         }
 
-        console.log(formState);
-        //saveForm(formState, saveUserFn);
+        saveForm(formState);
+    }
+
+    function saveForm(formState: IFormState): void {
+        if (selectedProduct) {
+            if (selectedProduct.amount < formState.amount.value) {
+                alert("Not enough products in warehouse");
+                return;
+            }
+
+            formState.product.value = selectedProduct;
+            dispatch(addOrder({
+                id: 0,
+                name: formState.name.value,
+                amount: formState.amount.value,
+                totalPrice: formState.totalPrice.value,
+                product: formState.product.value as IProduct
+            }));
+
+            dispatch(addNotification("Order added", `Order ${formState.name.value} added by you`));
+            dispatch(clearSelectedProduct());
+            dispatch(changeProductAmount(selectedProduct.id, formState.amount.value));
+            resetForm();
+        }
     }
 
 
     function getDisabledClass(): string {
-        let isError = (formState.amount.error || formState.totalPrice.error
+        let isError: boolean = (formState.amount.error || formState.totalPrice.error
             || formState.name.error || formState.product.error || !formState.name.value
-            || !formState.product.value);
+            || !selectedProduct) as boolean;
 
         return isError ? "disabled" : "";
     }
@@ -67,7 +116,7 @@ const OrderForm: React.FC = () => {
                                 <NumberInput id="input_amount"
                                     value={formState.amount.value}
                                     field="amount"
-                                    onChange={hasFormValueChanged}
+                                    onChange={hasAmountChanged}
                                     max={1000}
                                     min={0}
                                     label="Amount" />

@@ -1,33 +1,10 @@
-import React, { Fragment, Dispatch } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {  } from "react";
+import { useSelector } from "react-redux";
 import { IOrder } from "../../store/models/order.interfaces";
-import Card from "../../common/elements/Card";
+import { IStateType } from "../../store/models/root.interfaces";
 
 const OrderList: React.FC = () => {
-    const dispatch: Dispatch<any> = useDispatch();
-
-    const orders: IOrder[] = [
-        {
-            id: 1,
-            name: "Apple order",
-            amount: 12,
-            totalPrice: 100,
-            product: {
-                id: 2, name: "Apple", description: "This is Apple and it is healthy",
-                amount: 5, price: 2, hasExpiryDate: true, category: "Fruit"
-            },
-        },
-        {
-            id: 2,
-            name: "Straw order",
-            amount: 7,
-            totalPrice: 7,
-            product: {
-                id: 3, name: "Straw", description: "This is Straw and you can use it for your drink",
-                amount: 100, price: 1, hasExpiryDate: false, category: "Kitchen"
-            },
-        }
-    ]
+    const orders: IOrder[] = useSelector((state: IStateType) => state.orders.orders);
 
     const orderList: JSX.Element[] = orders.map(order => {
         return (

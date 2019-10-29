@@ -3,7 +3,7 @@ import { IStateType, IProductState } from "../../store/models/root.interfaces";
 import { useSelector, useDispatch } from "react-redux";
 import { IProduct, ProductModificationStatus } from "../../store/models/product.interface";
 import TextInput from "../../common/elements/TextInput";
-import { editProduct, clearProductPendingEdit, setModificationState, addProduct } from "../../store/actions/products.action";
+import { editProduct, clearSelectedProduct, setModificationState, addProduct } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
 import NumberInput, { OnChangeNumberModel } from "../../common/elements/NumberInput";
 import Checkbox, { OnChangeCheckboxModel } from "../../common/elements/Checkbox";
@@ -67,7 +67,7 @@ const ProductForm: React.FC = () => {
       }));
 
       dispatch(addNotification("Product edited", `Product ${formState.name.value} edited by you`));
-      dispatch(clearProductPendingEdit());
+      dispatch(clearSelectedProduct());
       dispatch(setModificationState(ProductModificationStatus.None));
     }
   }

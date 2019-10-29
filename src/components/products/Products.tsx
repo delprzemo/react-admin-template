@@ -1,30 +1,38 @@
-import React, { Fragment, Dispatch, useState } from "react";
+import React, { Fragment, Dispatch, useState, useEffect } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
 import Card from "../../common/elements/Card";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
-import { IProductState, IStateType } from "../../store/models/root.interfaces";
+import { IProductState, IStateType, IRootPageStateType } from "../../store/models/root.interfaces";
 import Popup from "reactjs-popup";
-import { removeProduct, clearProductPendingEdit, setModificationState, changeProductPendingEdit } from "../../store/actions/products.action";
+import { removeProduct, clearSelectedProduct, setModificationState,
+  changeSelectedProduct } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
 import { ProductModificationStatus, IProduct } from "../../store/models/product.interface";
 
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
+
   const products: IProductState = useSelector((state: IStateType) => state.products);
+  const path: IRootPageStateType = useSelector((state: IStateType) => state.root.page);
   const numberItemsCount: number = products.products.length;
   const totalPrice: number = products.products.reduce((prev, next) => prev + ((next.price * next.amount) || 0), 0);
   const totalAmount: number = products.products.reduce((prev, next) => prev + (next.amount || 0), 0);
   const [popup, setPopup] = useState(false);
 
-  function onProductSelect(product: IProduct) {
-    dispatch(changeProductPendingEdit(product));
+  useEffect(() => {
+    dispatch(updateCurrentPath("products", "list"));
+    dispatch(clearSelectedProduct());
+  }, [path.area]);
+
+
+  function onProductSelect(product: IProduct): void {
+    dispatch(changeSelectedProduct(product));
     dispatch(setModificationState(ProductModificationStatus.None));
   }
 
-  dispatch(updateCurrentPath("products", "list"));
   return (
     <Fragment>
       <h1 className="h3 mb-2 text-gray-800">Products</h1>
@@ -56,7 +64,7 @@ const Products: React.FC = () => {
               </div>
             </div>
             <div className="card-body">
-              <ProductList 
+              <ProductList
                 onSelect={onProductSelect}
               />
             </div>
@@ -87,7 +95,7 @@ const Products: React.FC = () => {
                 }
                 dispatch(addNotification("Product removed", `Product ${products.selectedProduct.name} was removed`));
                 dispatch(removeProduct(products.selectedProduct.id));
-                dispatch(clearProductPendingEdit());
+                dispatch(clearSelectedProduct());
                 setPopup(false);
               }}>Remove
               </button>
