@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/account/Login";
 import Admin from "./components/Admin";
 import { PrivateRoute } from "./common/elements/PrivateRoute";
+import { AccountRoute } from "./common/elements/AccountRoute";
 
 const App: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const App: React.FC = () => {
           <PrivateRoute path="/admin">
             <Admin />
           </PrivateRoute>
-          <Route path="/login"><Login /></Route>
+          <AccountRoute path="/login"><Login /></AccountRoute>
         </Switch>
       </Router>
     </div>

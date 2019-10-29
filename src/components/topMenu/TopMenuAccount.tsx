@@ -1,9 +1,11 @@
 import React, { useState, Dispatch } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/account.actions";
+import { IStateType } from "../../store/models/root.interfaces";
 
 function TopMenuAccount(): JSX.Element {
   const dispatch: Dispatch<any> = useDispatch();
+  const email: string = useSelector((state: IStateType) => state.account.email);
   const [isShow, setShow] = useState(false);
 
   return (
@@ -19,7 +21,7 @@ function TopMenuAccount(): JSX.Element {
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false">
-        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+        <span className="mr-2 d-none d-lg-inline text-gray-600 small">{email}</span>
         <img className="img-profile rounded-circle" alt=""
           src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
       </a>

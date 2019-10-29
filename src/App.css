@@ -53,3 +53,9 @@ body {
 .card-bottom-list {
     max-height: 303px;
 }
+
+.bg-login-image {
+    background: url("./assets/login.png") !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
