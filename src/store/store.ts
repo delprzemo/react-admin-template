@@ -7,7 +7,5 @@ const store: Store = createStore(rootReducers, applyMiddleware(
     thunkMiddleware
 ));
 
-console.log(store.getState());
-
-store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => {});
 export default store;

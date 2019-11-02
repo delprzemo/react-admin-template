@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, ReactElement } from "react";
+import { ICardProperties } from "../models/TopCard.types";
 
 function TopCard(props: PropsWithChildren<ICardProperties>): ReactElement {
     return (
@@ -20,11 +21,5 @@ function TopCard(props: PropsWithChildren<ICardProperties>): ReactElement {
     );
 }
 
-interface ICardProperties {
-    text: string;
-    title: string;
-    icon: string;
-    class: string;
-}
 
 export default TopCard;

@@ -8,7 +8,6 @@ import { IOrder } from "../store/models/order.interfaces";
 import OrderList from "./orders/OrderList";
 
 const Home: React.FC = () => {
-
   const products: IProductState = useSelector((state: IStateType) => state.products);
   const numberItemsCount: number = products.products.length;
   const totalPrice: number = products.products.reduce((prev, next) => prev + ((next.price * next.amount) || 0), 0);

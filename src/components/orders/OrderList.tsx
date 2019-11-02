@@ -19,10 +19,7 @@ const OrderList: React.FC = () => {
     })
 
     return (
-
-
         <div className="table-responsive portlet">
-
             <table className="table">
                 <thead className="thead-light">
                     <tr>
@@ -38,8 +35,6 @@ const OrderList: React.FC = () => {
                 </tbody>
             </table>
         </div>
-
-
     )
 }
 

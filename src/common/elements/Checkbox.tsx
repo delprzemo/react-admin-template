@@ -1,26 +1,11 @@
 import React, { useState, ChangeEvent } from "react";
-
-export type CheckboxProps = {
-    required?: boolean,
-    onChange: Function,
-    id: string,
-    label: string,
-    value: boolean,
-    inputClass?: string,
-    field: string
-};
-
-export type OnChangeCheckboxModel = {
-    value: boolean,
-    error: string,
-    touched: boolean
-};
+import { CheckboxProps } from "../models/Checkbox.types";
 
 function Checkbox(props: CheckboxProps): JSX.Element {
     const [touched, setTouch] = useState(false);
     const [error, setError] = useState("");
     const [htmlClass, setHtmlClass] = useState("");
-    const [value, setValue] = useState(false);
+    const [, setValue] = useState(false);
 
 
     function onValueChanged(event: ChangeEvent<HTMLInputElement>): void {

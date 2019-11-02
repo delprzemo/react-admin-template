@@ -9,7 +9,7 @@ const initialState: IAccount = {
 function accountReducer(state: IAccount = initialState, action: IActionBase): IAccount {
     switch (action.type) {
         case LOG_IN: {
-            return { ...state, email: action.email};
+            return { ...state, email: (action.email)};
         }
         case LOG_OUT: {
             return { ...state, email: ""};

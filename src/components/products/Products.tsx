@@ -14,7 +14,6 @@ import { ProductModificationStatus, IProduct } from "../../store/models/product.
 
 const Products: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
-
   const products: IProductState = useSelector((state: IStateType) => state.products);
   const path: IRootPageStateType = useSelector((state: IStateType) => state.root.page);
   const numberItemsCount: number = products.products.length;
@@ -23,10 +22,9 @@ const Products: React.FC = () => {
   const [popup, setPopup] = useState(false);
 
   useEffect(() => {
-    dispatch(updateCurrentPath("products", "list"));
     dispatch(clearSelectedProduct());
-  }, [path.area]);
-
+    dispatch(updateCurrentPath("products", "list"));
+  }, [path.area, dispatch]);
 
   function onProductSelect(product: IProduct): void {
     dispatch(changeSelectedProduct(product));
@@ -43,7 +41,6 @@ const Products: React.FC = () => {
     <Fragment>
       <h1 className="h3 mb-2 text-gray-800">Products</h1>
       <p className="mb-4">Products here</p>
-
       <div className="row">
         <TopCard title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
         <TopCard title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="warehouse" class="danger" />

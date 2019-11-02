@@ -7,38 +7,38 @@ export const CHANGE_PRODUCT_PENDING_EDIT: string = "CHANGE_PRODUCT_PENDING_EDIT"
 export const CLEAR_PRODUCT_PENDING_EDIT: string = "CLEAR_PRODUCT_PENDING_EDIT";
 export const SET_MODIFICATION_STATE: string = "SET_MODIFICATION_STATE";
 
-export function addProduct(product: IProduct): addProductActionType {
+export function addProduct(product: IProduct): IAddProductActionType {
     return { type: ADD_PRODUCT, product: product };
 }
 
-export function editProduct(product: IProduct): editProductActionType {
+export function editProduct(product: IProduct): IEditProductActionType {
     return { type: EDIT_PRODUCT, product: product };
 }
 
-export function removeProduct(id: number): removeProductActionType {
+export function removeProduct(id: number): IRemoveProductActionType {
     return { type: REMOVE_PRODUCT, id: id };
 }
 
-export function changeProductAmount(id: number, amount: number): changeProductAmountType {
+export function changeProductAmount(id: number, amount: number): IChangeProductAmountType {
     return { type: CHANGE_PRODUCT_AMOUNT, id: id, amount: amount };
 }
 
-export function changeSelectedProduct(product: IProduct): changeSelectedProductActionType {
+export function changeSelectedProduct(product: IProduct): IChangeSelectedProductActionType {
     return { type: CHANGE_PRODUCT_PENDING_EDIT, product: product };
 }
 
-export function clearSelectedProduct(): clearSelectedProductActionType {
+export function clearSelectedProduct(): IClearSelectedProductActionType {
     return { type: CLEAR_PRODUCT_PENDING_EDIT };
 }
 
-export function setModificationState(value: ProductModificationStatus): setModificationStateActionType {
+export function setModificationState(value: ProductModificationStatus): ISetModificationStateActionType {
     return { type: SET_MODIFICATION_STATE, value: value };
 }
 
-export type addProductActionType = { type: string, product: IProduct };
-export type editProductActionType = { type: string, product: IProduct };
-export type removeProductActionType = { type: string, id: number };
-export type changeSelectedProductActionType = { type: string, product: IProduct };
-export type clearSelectedProductActionType = { type: string };
-export type setModificationStateActionType = { type: string, value:  ProductModificationStatus};
-export type changeProductAmountType = {type: string, id: number, amount: number};
+interface IAddProductActionType { type: string, product: IProduct };
+interface IEditProductActionType { type: string, product: IProduct };
+interface IRemoveProductActionType { type: string, id: number };
+interface IChangeSelectedProductActionType { type: string, product: IProduct };
+interface IClearSelectedProductActionType { type: string };
+interface ISetModificationStateActionType { type: string, value:  ProductModificationStatus};
+interface IChangeProductAmountType {type: string, id: number, amount: number};

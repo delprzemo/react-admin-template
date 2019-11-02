@@ -9,7 +9,7 @@ import Home from "./Home";
 import Notifications from "../common/elements/Notification";
 
 const Admin: React.FC = () => {
-  let match: match<{}>  = useRouteMatch() as match<{}> ;
+  const pathMatch: match<{}>  = useRouteMatch() as match<{}> ;
 
   return (
     <Fragment>
@@ -20,9 +20,9 @@ const Admin: React.FC = () => {
           <TopMenu />
           <div className="container-fluid">
             <Switch>
-              <Route path={`${match.path}/users`}><Users /></Route>
-              <Route path={`${match.path}/products`}><Products /></Route>
-              <Route path={`${match.path}/orders`}><Orders /></Route>
+              <Route path={`${pathMatch.path}/users`}><Users /></Route>
+              <Route path={`${pathMatch.path}/products`}><Products /></Route>
+              <Route path={`${pathMatch.path}/orders`}><Orders /></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

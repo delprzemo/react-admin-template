@@ -5,28 +5,17 @@ import { IProduct, ProductModificationStatus } from "../../store/models/product.
 import TextInput from "../../common/elements/TextInput";
 import { editProduct, clearSelectedProduct, setModificationState, addProduct } from "../../store/actions/products.action";
 import { addNotification } from "../../store/actions/notifications.action";
-import NumberInput, { OnChangeNumberModel } from "../../common/elements/NumberInput";
-import Checkbox, { OnChangeCheckboxModel } from "../../common/elements/Checkbox";
+import NumberInput from "../../common/elements/NumberInput";
+import Checkbox from "../../common/elements/Checkbox";
 import SelectInput from "../../common/elements/Select";
-import { OnChangeModel } from "../../common/models/Form.models";
+import { OnChangeModel, IProductFormState } from "../../common/models/Form.types";
 
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const products: IProductState | null = useSelector((state: IStateType) => state.products);
   let product: IProduct | null = products.selectedProduct;
   const isCreate: boolean = (products.modificationState === ProductModificationStatus.Create);
-
-  type FormStateField = {error: string, value: string | number | boolean};
-
-  interface IFormState {
-    name: FormStateField;
-    description: FormStateField;
-    amount: FormStateField;
-    price: FormStateField;
-    hasExpiryDate: FormStateField;
-    category: FormStateField;
-  }
-
+  
   if (!product || isCreate) {
     product = { id: 0, name: "", description: "", amount: 0, price: 0, hasExpiryDate: false, category: "" };
   }
@@ -46,7 +35,7 @@ const ProductForm: React.FC = () => {
 
   function saveUser(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    if (getDisabledClass()) {
+    if (isFormInvalid()) {
       return;
     }
 
@@ -54,7 +43,7 @@ const ProductForm: React.FC = () => {
     saveForm(formState, saveUserFn);
   }
 
-  function saveForm(formState: IFormState, saveFn: Function): void {
+  function saveForm(formState: IProductFormState, saveFn: Function): void {
     if (product) {
       dispatch(saveFn({
         ...product,
@@ -77,12 +66,15 @@ const ProductForm: React.FC = () => {
   }
 
   function getDisabledClass(): string {
-    let isError = (formState.amount.error || formState.description.error
-      || formState.name.error || formState.price.error || formState.hasExpiryDate.error
-      || formState.category.error || !formState.name.value || !formState.category.value);
-
+    let isError: boolean = isFormInvalid();
     return isError ? "disabled" : "";
   }
+
+  function isFormInvalid(): boolean {
+    return (formState.amount.error || formState.description.error
+      || formState.name.error || formState.price.error || formState.hasExpiryDate.error
+      || formState.category.error || !formState.name.value || !formState.category.value) as boolean;
+}
 
   return (
     <Fragment>

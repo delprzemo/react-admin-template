@@ -1,23 +1,13 @@
 import React, { useState, ChangeEvent } from "react";
+import { TextInputProps } from "../models/TextInput.types";
 
-export type TextInputProps = {
-    required: boolean,
-    onChange: Function,
-    id: string,
-    label: string,
-    placeholder: string,
-    value: string,
-    type?: string,
-    maxLength: number,
-    inputClass?: string,
-    field: string
-};
+
 
 function TextInput(props: TextInputProps): JSX.Element {
     const [touched, setTouch] = useState(false);
     const [error, setError] = useState("");
     const [htmlClass, setHtmlClass] = useState("");
-    const [value, setValue] = useState("");
+    const [, setValue] = useState("");
 
 
     function onValueChanged(event: ChangeEvent<HTMLInputElement>): void {

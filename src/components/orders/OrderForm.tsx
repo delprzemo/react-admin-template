@@ -2,7 +2,7 @@ import React, { useState, FormEvent, Fragment, Dispatch } from "react";
 import { IProduct } from "../../store/models/product.interface";
 import TextInput from "../../common/elements/TextInput";
 import NumberInput from "../../common/elements/NumberInput";
-import { OnChangeModel } from "../../common/models/Form.models";
+import { OnChangeModel, IOrderFormState } from "../../common/models/Form.types";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../store/actions/orders.actions";
 import { addNotification } from "../../store/actions/notifications.action";
@@ -12,21 +12,12 @@ import { IStateType } from "../../store/models/root.interfaces";
 const OrderForm: React.FC = () => {
     const dispatch: Dispatch<any> = useDispatch();
     const selectedProduct: IProduct | null = useSelector((state: IStateType) => state.products.selectedProduct);
-    const initialFormState: IFormState = {
+    const initialFormState: IOrderFormState = {
         name: { error: "", value: "" },
         product: { error: "", value: null },
         amount: { error: "", value: 0 },
         totalPrice: { error: "", value: 0 },
     };
-
-    interface IFormState {
-        name: IFormStateField<string>;
-        product: IFormStateField<IProduct | null>;
-        amount: IFormStateField<number>;
-        totalPrice: IFormStateField<number>;
-    }
-
-    interface IFormStateField<T> { error: string; value: T; }
 
     const [formState, setFormState] = useState(initialFormState);
 
@@ -54,14 +45,14 @@ const OrderForm: React.FC = () => {
 
     function saveOrder(e: FormEvent<HTMLFormElement>): void {
         e.preventDefault();
-        if (getDisabledClass()) {
+        if (isFormInvalid()) {
             return;
         }
 
         saveForm(formState);
     }
 
-    function saveForm(formState: IFormState): void {
+    function saveForm(formState: IOrderFormState): void {
         if (selectedProduct) {
             if (selectedProduct.amount < formState.amount.value) {
                 alert("Not enough products in warehouse");
@@ -84,12 +75,14 @@ const OrderForm: React.FC = () => {
         }
     }
 
-
-    function getDisabledClass(): string {
-        let isError: boolean = (formState.amount.error || formState.totalPrice.error
+    function isFormInvalid(): boolean {
+        return (formState.amount.error || formState.totalPrice.error
             || formState.name.error || formState.product.error || !formState.name.value
             || !selectedProduct) as boolean;
+    }
 
+    function getDisabledClass(): string {
+        let isError: boolean =  isFormInvalid();
         return isError ? "disabled" : "";
     }
 
@@ -123,7 +116,7 @@ const OrderForm: React.FC = () => {
                             </div>
 
                             <div className="form-group col-md-6">
-                                <NumberInput id="input_totalprice"
+                                <NumberInput id="input_totalPrice"
                                     value={formState.totalPrice.value}
                                     field="totalPrice"
                                     onChange={hasFormValueChanged}

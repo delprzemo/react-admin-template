@@ -15,7 +15,7 @@ function TopMenuAccount(): JSX.Element {
         onClick={() => {
           setShow(!isShow);
         }}
-        href="#"
+        href="# "
         id="userDropdown"
         role="button"
         data-toggle="dropdown"
@@ -30,7 +30,8 @@ function TopMenuAccount(): JSX.Element {
         aria-labelledby="userDropdown">
         <a className="dropdown-item"
         onClick={() => dispatch(logout())}
-        href="#" data-toggle="modal"
+        href="# " 
+        data-toggle="modal"
         data-target="#logoutModal">
           <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           Logout

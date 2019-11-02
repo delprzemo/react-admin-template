@@ -35,7 +35,6 @@ const Notifications: React.FC = () => {
     )
   });
 
-
   return (
     <div className="toast-wrapper">
       {notificationList}

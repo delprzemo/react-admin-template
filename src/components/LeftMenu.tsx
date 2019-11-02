@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useRouteMatch, match } from "react-router-dom";
 
 const LeftMenu: React.FC = () => {
-    let match: match<{}> = useRouteMatch() as match<{}>;
+    let pathMatch: match<{}> = useRouteMatch() as match<{}>;
 
     return (
         <ul className="navbar-nav bg-gradient-primary-green sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -30,14 +30,14 @@ const LeftMenu: React.FC = () => {
             </div>
 
             <li className="nav-item">
-                <Link className="nav-link" to={`${match.url}/products`}>
+                <Link className="nav-link" to={`${pathMatch.url}/products`}>
                     <i className="fas fa-fw fa-warehouse"></i>
                     <span>Products</span>
                 </Link>
             </li>
 
             <li className="nav-item">
-                <Link className="nav-link" to={`${match.url}/orders`}>
+                <Link className="nav-link" to={`${pathMatch.url}/orders`}>
                     <i className="fas fa-fw fa-dollar-sign"></i>
                     <span>Orders</span>
                 </Link>
@@ -51,7 +51,7 @@ const LeftMenu: React.FC = () => {
 
 
             <li className="nav-item">
-                <Link className="nav-link" to={`${match.url}/users`}>
+                <Link className="nav-link" to={`${pathMatch.url}/users`}>
                     <i className="fas fa-fw fa-user"></i>
                     <span>Users</span>
                 </Link>

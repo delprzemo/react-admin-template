@@ -1,6 +1,6 @@
 
 import React, { useState, FormEvent, Dispatch } from "react";
-import { OnChangeModel } from "../../common/models/Form.models";
+import { OnChangeModel } from "../../common/models/Form.types";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/actions/account.actions";
 import TextInput from "../../common/elements/TextInput";
@@ -19,17 +19,19 @@ const Login: React.FC = () => {
 
   function submit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    if(getDisabledClass()) { return; }
+    if(isFormInvalid()) { return; }
     dispatch(login(formState.email.value));
   }
 
-  function getDisabledClass(): string {
-    let isError: boolean = (formState.email.error || formState.password.error
-      || !formState.email.value || !formState.password.value) as boolean;
-
-    return isError ? "disabled" : "";
+  function isFormInvalid() {
+    return (formState.email.error || formState.password.error
+      || !formState.email.value || !formState.password.value);
   }
 
+  function getDisabledClass(): string {
+    let isError: boolean = isFormInvalid() as boolean;
+    return isError ? "disabled" : "";
+  }
 
   return (
 
@@ -86,11 +88,8 @@ const Login: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

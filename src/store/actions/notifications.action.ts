@@ -1,14 +1,13 @@
 export const ADD_NOTIFICATION: string = "ADD_NOTIFICATION";
 export const REMOVE_NOTIFICATION: string = "REMOVE_NOTIFICATION";
 
-export function addNotification(title: string, text: string): addNotificationActionType {
+export function addNotification(title: string, text: string): IAddNotificationActionType {
     return { type: ADD_NOTIFICATION, text: text, title: title };
 }
 
-export function removeNotification(id: number): removeNotificationActionType {
+export function removeNotification(id: number): IRemoveNotificationActionType {
     return { type: REMOVE_NOTIFICATION, id: id };
 }
 
-
-export type addNotificationActionType = { type: string, text: string, title: string };
-export type removeNotificationActionType = { type: string, id: number };
+interface IAddNotificationActionType { type: string, text: string, title: string };
+interface IRemoveNotificationActionType { type: string, id: number };

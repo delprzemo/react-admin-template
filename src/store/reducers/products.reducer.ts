@@ -35,8 +35,7 @@ function productsReducer(state: IProductState = initialState, action: IActionBas
         case ADD_PRODUCT: {
             let maxId: number = Math.max.apply(Math, state.products.map(function(o) { return o.id; }));
             action.product.id = maxId + 1;
-            state.products.push(action.product);
-            return { ...state};
+            return { ...state, products: [...state.products, action.product]};
         }
         case EDIT_PRODUCT: {
             const foundIndex: number = state.products.findIndex(pr => pr.id === action.product.id);

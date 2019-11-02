@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers, Reducer } from "redux";
 import { UPDATE_CURRENT_PATH } from "../actions/root.actions";
-import { IRootStateType, IActionBase } from "../models/root.interfaces";
+import { IRootStateType, IActionBase, IStateType } from "../models/root.interfaces";
 import productsReducer from "./products.reducer";
 import notificationReducer from "./notification.reducer";
 import userReducer from "./users.reducer";
@@ -21,7 +21,7 @@ function rootReducer(state: IRootStateType = initialState, action: IActionBase):
     }
 }
 
-const rootReducers: any = combineReducers({root: rootReducer,
+const rootReducers: Reducer<IStateType> = combineReducers({root: rootReducer,
     products: productsReducer,
     notifications: notificationReducer,
     users: userReducer,

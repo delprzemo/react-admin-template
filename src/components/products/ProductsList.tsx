@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { IStateType, IProductState } from "../../store/models/root.interfaces";
 import { IProduct } from "../../store/models/product.interface";
 
-
 export type productListProps = {
   onSelect?: (product: IProduct) => void;
   children?: React.ReactNode;

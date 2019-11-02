@@ -1,5 +1,5 @@
-import { IUserState } from "../models/root.interfaces";
-import { ADD_ADMIN, REMOVE_ADMIN, addAdminActionType } from "../actions/users.action";
+import { IUserState, IActionBase } from "../models/root.interfaces";
+import { ADD_ADMIN, REMOVE_ADMIN } from "../actions/users.action";
 
 const initialState: IUserState = {
     users: [
@@ -11,7 +11,7 @@ const initialState: IUserState = {
     ]
 };
 
-function userReducer(state: IUserState = initialState, action: addAdminActionType): IUserState {
+function userReducer(state: IUserState = initialState, action: IActionBase): IUserState {
     switch (action.type) {
         case ADD_ADMIN: {
             return { ...state, users: state.users.filter(x=>x.id !== action.user.id), admins: [...state.admins, action.user]};
@@ -23,6 +23,5 @@ function userReducer(state: IUserState = initialState, action: addAdminActionTyp
             return state;
     }
 }
-
 
 export default userReducer;

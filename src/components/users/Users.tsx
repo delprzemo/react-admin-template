@@ -1,5 +1,4 @@
-
-import React, { Fragment, useState, Dispatch } from "react";
+import React, { Fragment, Dispatch } from "react";
 import TopCard from "../../common/elements/TopCard";
 import { IUser } from "../../store/models/user.interface";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +21,6 @@ const Users: React.FC = () => {
   function setUserNotAdmin(admin: IUser): void {
     dispatch(removeAdmin(admin)); 
   }
-
 
   const userElements: JSX.Element[] = users.map(user => {
     return (
@@ -47,7 +45,6 @@ const Users: React.FC = () => {
         <td><button className="btn btn-danger" onClick={() => setUserNotAdmin(admin)}>Revert admin</button> </td>
       </tr>);
   });
-
 
   return (
     <Fragment>

@@ -2,9 +2,8 @@ import { IOrder } from "../models/order.interfaces";
 
 export const ADD_ORDER: string = "ADD_ORDER";
 
-export function addOrder(order: IOrder): addOrderActionType {
+export function addOrder(order: IOrder): IAddOrderActionType {
     return { type: ADD_ORDER, order: order };
 }
 
-
-export type addOrderActionType = { type: string, order: IOrder };
+interface IAddOrderActionType { type: string, order: IOrder };
