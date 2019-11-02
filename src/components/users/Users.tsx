@@ -1,6 +1,6 @@
 
 import React, { Fragment, useState, Dispatch } from "react";
-import Card from "../../common/elements/Card";
+import TopCard from "../../common/elements/TopCard";
 import { IUser } from "../../store/models/user.interface";
 import { useDispatch, useSelector } from "react-redux";
 import { IStateType } from "../../store/models/root.interfaces";
@@ -55,8 +55,8 @@ const Users: React.FC = () => {
       <p className="mb-4">Users here</p>
 
       <div className="row">
-        <Card title="ADMINS" text={admins.length.toString()} icon="user-tie" class="primary" />
-        <Card title="USER" text={users.length.toString()} icon="user" class="danger" />
+        <TopCard title="ADMINS" text={admins.length.toString()} icon="user-tie" class="primary" />
+        <TopCard title="USER" text={users.length.toString()} icon="user" class="danger" />
       </div>
 
       <div className="row">

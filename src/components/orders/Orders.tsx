@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
 import { IOrder } from "../../store/models/order.interfaces";
 import OrderList from "./OrderList";
-import Card from "../../common/elements/Card";
+import TopCard from "../../common/elements/TopCard";
 import OrderForm from "./OrderForm";
 import ProductList from "../products/ProductsList";
 import { IProduct } from "../../store/models/product.interface";
@@ -28,8 +28,8 @@ const Orders: React.FC = () => {
             <p className="mb-4">Users here</p>
 
             <div className="row">
-                <Card title="TOTAL SALES" text={totalSales.toString()} icon="donate" class="primary" />
-                <Card title="TOTAL AMOUNT" text={totalAmount.toString()} icon="calculator" class="danger" />
+                <TopCard title="TOTAL SALES" text={totalSales.toString()} icon="donate" class="primary" />
+                <TopCard title="TOTAL AMOUNT" text={totalAmount.toString()} icon="calculator" class="danger" />
             </div>
 
             <div className="row">

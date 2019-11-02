@@ -1,7 +1,7 @@
 import React, { Fragment, Dispatch, useState, useEffect } from "react";
 import ProductList from "./ProductsList";
 import ProductForm from "./ProductsForm";
-import Card from "../../common/elements/Card";
+import TopCard from "../../common/elements/TopCard";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
@@ -45,9 +45,9 @@ const Products: React.FC = () => {
       <p className="mb-4">Products here</p>
 
       <div className="row">
-        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
-        <Card title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="warehouse" class="danger" />
-        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
+        <TopCard title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
+        <TopCard title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="warehouse" class="danger" />
+        <TopCard title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
       </div>
 
       <div className="row">

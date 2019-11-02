@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from "react";
 
-function Card(props: PropsWithChildren<ICardProperties>): ReactElement {
+function TopCard(props: PropsWithChildren<ICardProperties>): ReactElement {
     return (
         <div className="col-xl-3 col-md-6 mb-4">
             <div className={`card border-left-${props.class} shadow h-100 py-2 `}>
@@ -27,4 +27,4 @@ interface ICardProperties {
     class: string;
 }
 
-export default Card;
+export default TopCard;

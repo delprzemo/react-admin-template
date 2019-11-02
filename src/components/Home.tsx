@@ -1,7 +1,7 @@
 import React, { Fragment, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../store/actions/root.actions";
-import Card from "../common/elements/Card";
+import TopCard from "../common/elements/TopCard";
 import { IProductState, IStateType } from "../store/models/root.interfaces";
 import ProductList from "./products/ProductsList";
 import { IOrder } from "../store/models/order.interfaces";
@@ -27,14 +27,14 @@ const Home: React.FC = () => {
       <p className="mb-4">Summary and overview of our admin stuff here</p>
 
       <div className="row">
-        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
-        <Card title="PRODUCT AMOUNT" text={`${totalProductAmount}`} icon="warehouse" class="danger" />
-        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
+        <TopCard title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
+        <TopCard title="PRODUCT AMOUNT" text={`${totalProductAmount}`} icon="warehouse" class="danger" />
+        <TopCard title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
       </div>
 
       <div className="row">
-        <Card title="SALES" text={totalSales.toString()} icon="donate" class="primary" />
-        <Card title="ORDER AMOUNT" text={totalOrderAmount.toString()} icon="calculator" class="danger" />
+        <TopCard title="SALES" text={totalSales.toString()} icon="donate" class="primary" />
+        <TopCard title="ORDER AMOUNT" text={totalOrderAmount.toString()} icon="calculator" class="danger" />
       </div>
 
       <div className="row">
