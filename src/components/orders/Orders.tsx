@@ -24,8 +24,8 @@ const Orders: React.FC = () => {
 
     return (
         <Fragment>
-            <h1 className="h3 mb-2 text-gray-800">Users</h1>
-            <p className="mb-4">Users here</p>
+            <h1 className="h3 mb-2 text-gray-800">Order</h1>
+            <p className="mb-4">Orders here</p>
 
             <div className="row">
                 <TopCard title="TOTAL SALES" text={totalSales.toString()} icon="donate" class="primary" />
