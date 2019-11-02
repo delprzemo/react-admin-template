@@ -85,3 +85,7 @@ li a {
 .cadet {
     color: cadetblue;
 }
+
+.text-green {
+    color: seagreen !important;
+}

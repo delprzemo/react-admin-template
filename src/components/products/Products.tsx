@@ -51,7 +51,7 @@ const Products: React.FC = () => {
         <div className="col-xl-12 col-lg-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Product List</h6>
+              <h6 className="m-0 font-weight-bold text-green">Product List</h6>
               <div className="header-buttons">
                 <button className="btn btn-success btn-green" onClick={() =>
                   dispatch(setModificationState(ProductModificationStatus.Create))}>

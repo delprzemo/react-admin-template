@@ -41,7 +41,7 @@ const Home: React.FC = () => {
         <div className="col-xl-6 col-lg-6">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Product list</h6>
+              <h6 className="m-0 font-weight-bold text-green">Product list</h6>
             </div>
             <div className="card-body">
               <ProductList />
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         <div className="col-xl-6 col-lg-6">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Order list</h6>
+              <h6 className="m-0 font-weight-bold text-green">Order list</h6>
             </div>
             <div className="card-body">
               <OrderList />

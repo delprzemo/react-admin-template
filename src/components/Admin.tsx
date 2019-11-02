@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import LeftMenu from "./LeftMenu";
 import TopMenu from "./topMenu/TopMenu";
-import { Switch, Route, useRouteMatch, match } from "react-router";
+import { Switch, Route } from "react-router";
 import Users from "./users/Users";
 import Products from "./products/Products";
 import Orders from "./orders/Orders";
@@ -9,7 +9,6 @@ import Home from "./Home";
 import Notifications from "../common/elements/Notification";
 
 const Admin: React.FC = () => {
-  const pathMatch: match<{}>  = useRouteMatch() as match<{}> ;
 
   return (
     <Fragment>
@@ -20,9 +19,9 @@ const Admin: React.FC = () => {
           <TopMenu />
           <div className="container-fluid">
             <Switch>
-              <Route path={`${pathMatch.path}/users`}><Users /></Route>
-              <Route path={`${pathMatch.path}/products`}><Products /></Route>
-              <Route path={`${pathMatch.path}/orders`}><Orders /></Route>
+              <Route path={`/users`}><Users /></Route>
+              <Route path={`/products`}><Products /></Route>
+              <Route path={`/orders`}><Orders /></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

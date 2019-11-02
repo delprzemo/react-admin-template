@@ -36,7 +36,7 @@ const Orders: React.FC = () => {
                 <div className="col-xl-12 col-lg-12">
                     <div className="card shadow mb-4">
                         <div className="card-header py-3">
-                            <h6 className="m-0 font-weight-bold text-primary">Order List</h6>
+                            <h6 className="m-0 font-weight-bold text-green">Order List</h6>
                             <div className="header-buttons">
                             </div>
                         </div>
@@ -54,7 +54,7 @@ const Orders: React.FC = () => {
                 <div className="col-md-6">
                     <div className="card card-bottom-list shadow mb-4">
                         <div className="card-header py-3">
-                            <h6 className="m-0 font-weight-bold text-primary">Product list</h6>
+                            <h6 className="m-0 font-weight-bold text-green">Product list</h6>
                         </div>
                         <ProductList
                             onSelect={selectProduct}

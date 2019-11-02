@@ -13,7 +13,7 @@ const App: React.FC = () => {
 
       <Router>
         <Switch>
-          <PrivateRoute path="/admin">
+          <PrivateRoute path="/">
             <Admin />
           </PrivateRoute>
           <AccountRoute path="/login"><Login /></AccountRoute>
