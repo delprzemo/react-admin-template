@@ -9,9 +9,9 @@ const TopMenu: React.FC = () => {
   const page: IRootPageStateType = useSelector((state: IStateType) => state.root.page);
 
   return (
-    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <nav className="navbar navbar-expand navbar-light bg-custom-dark topbar mb-4 static-top shadow">
 
-      <ol className="breadcrumb white-breadcrumb">
+      <ol className="breadcrumb dark-breadcrumb">
         <li className="breadcrumb-item"><a href="#">{page ? page.area : null}</a></li>
         <li className="breadcrumb-item"><a href="#">{page ? page.subArea : null}</a></li>
       </ol>

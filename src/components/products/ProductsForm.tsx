@@ -156,7 +156,7 @@ const ProductForm: React.FC = () => {
                 />
               </div>
               <button className="btn btn-danger" onClick={() => cancelForm()}>Cancel</button>
-              <button type="submit" className={`btn btn-primary left-margin ${getDisabledClass()}`}>Save</button>
+              <button type="submit" className={`btn btn-success left-margin ${getDisabledClass()}`}>Save</button>
             </form>
           </div>
         </div>

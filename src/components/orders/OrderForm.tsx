@@ -133,7 +133,7 @@ const OrderForm: React.FC = () => {
                             </div>
                         </div>
                         <button className="btn btn-danger" onClick={() => resetForm()}>Reset</button>
-                        <button type="submit" className={`btn btn-primary left-margin ${getDisabledClass()}`}>Save</button>
+                        <button type="submit" className={`btn btn-success left-margin ${getDisabledClass()}`}>Create</button>
                     </form>
                 </div>
             </div>

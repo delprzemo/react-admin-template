@@ -36,7 +36,7 @@ body {
 
 .toast-wrapper {
     position: fixed;
-    top     : 30px;
+    top     : 80px;
     right   : 30px;
     z-index: 100 !important;
 }
@@ -58,4 +58,30 @@ body {
     background: url("./assets/login.png") !important;
     background-position: center !important;
     background-size: cover !important;
+}
+
+.bg-gradient-primary-green {
+    background-image: linear-gradient(180deg,#303030 10%,#00bc8c 100%);
+    background-size: cover;
+}
+
+.icon-green {
+    color: seagreen;
+}
+
+.bg-custom-dark {
+    background-color: #303030;
+}
+
+.dark-breadcrumb {
+    background-color: #303030 !important;
+    margin-top: 15px !important;
+}
+
+li a {
+    color: cadetblue;
+}
+
+.cadet {
+    color: cadetblue;
 }
