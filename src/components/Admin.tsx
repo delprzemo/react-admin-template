@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Notifications from "../common/elements/Notifications";
 import LeftMenu from "./LeftMenu";
 import TopMenu from "./topMenu/TopMenu";
 import { Switch, Route, useRouteMatch, match } from "react-router";
@@ -7,6 +6,7 @@ import Users from "./users/Users";
 import Products from "./products/Products";
 import Orders from "./orders/Orders";
 import Home from "./Home";
+import Notifications from "../common/elements/Notification";
 
 const Admin: React.FC = () => {
   let match: match<{}>  = useRouteMatch() as match<{}> ;

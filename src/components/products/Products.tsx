@@ -33,6 +33,12 @@ const Products: React.FC = () => {
     dispatch(setModificationState(ProductModificationStatus.None));
   }
 
+  function onProductRemove() {
+    if(products.selectedProduct) {
+      setPopup(true);
+    }
+  }
+
   return (
     <Fragment>
       <h1 className="h3 mb-2 text-gray-800">Products</h1>
@@ -58,7 +64,7 @@ const Products: React.FC = () => {
                   dispatch(setModificationState(ProductModificationStatus.Edit))}>
                   <i className="fas fa fa-pen"></i>
                 </button>
-                <button className="btn btn-success btn-red" onClick={() => setPopup(true)}>
+                <button className="btn btn-success btn-red" onClick={() => onProductRemove()}>
                   <i className="fas fa fa-times"></i>
                 </button>
               </div>
