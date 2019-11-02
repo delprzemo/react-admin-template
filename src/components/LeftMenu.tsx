@@ -31,14 +31,14 @@ const LeftMenu: React.FC = () => {
 
             <li className="nav-item">
                 <Link className="nav-link" to={`${match.url}/products`}>
-                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <i className="fas fa-fw fa-warehouse"></i>
                     <span>Products</span>
                 </Link>
             </li>
 
             <li className="nav-item">
                 <Link className="nav-link" to={`${match.url}/orders`}>
-                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <i className="fas fa-fw fa-dollar-sign"></i>
                     <span>Orders</span>
                 </Link>
             </li>
@@ -52,7 +52,7 @@ const LeftMenu: React.FC = () => {
 
             <li className="nav-item">
                 <Link className="nav-link" to={`${match.url}/users`}>
-                    <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <i className="fas fa-fw fa-user"></i>
                     <span>Users</span>
                 </Link>
             </li>

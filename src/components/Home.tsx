@@ -1,36 +1,69 @@
 import React, { Fragment, Dispatch } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../store/actions/root.actions";
+import Card from "../common/elements/Card";
+import { IProductState, IStateType } from "../store/models/root.interfaces";
+import ProductList from "./products/ProductsList";
+import { IOrder } from "../store/models/order.interfaces";
+import OrderList from "./orders/OrderList";
 
 const Home: React.FC = () => {
 
-  const dispatch: Dispatch<any> = useDispatch();
-  dispatch(updateCurrentPath("home", ""));
+  const products: IProductState = useSelector((state: IStateType) => state.products);
+  const numberItemsCount: number = products.products.length;
+  const totalPrice: number = products.products.reduce((prev, next) => prev + ((next.price * next.amount) || 0), 0);
+  const totalProductAmount: number = products.products.reduce((prev, next) => prev + (next.amount || 0), 0);
+
+  const orders: IOrder[] = useSelector((state: IStateType) => state.orders.orders);
+  const totalSales: number = orders.reduce((prev, next) => prev + next.totalPrice, 0);
+  const totalOrderAmount: number = orders.reduce((prev, next) => prev + next.amount, 0);
+
+  const dispatch: Dispatch<any> = useDispatch();
+  dispatch(updateCurrentPath("home", "dashboard"));
 
   return (
     <Fragment>
-      <h1 className="h3 mb-2 text-gray-800">Charts</h1>
-      <p className="mb-4">Chart.js is a third party plugin that is used to
-      generate the charts in this theme. The charts below have been customized -
-            for further customization options, please visit the.</p>
+      <h1 className="h3 mb-2 text-gray-800">Dashboard</h1>
+      <p className="mb-4">Summary and overview of our admin stuff here</p>
+
+      <div className="row">
+        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
+        <Card title="PRODUCT AMOUNT" text={`${totalProductAmount}`} icon="warehouse" class="danger" />
+        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
+      </div>
+
+      <div className="row">
+        <Card title="SALES" text={totalSales.toString()} icon="donate" class="primary" />
+        <Card title="ORDER AMOUNT" text={totalOrderAmount.toString()} icon="calculator" class="danger" />
+      </div>
 
       <div className="row">
 
-        <div className="col-xl-8 col-lg-7">
+        <div className="col-xl-6 col-lg-6">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Area Chart</h6>
+              <h6 className="m-0 font-weight-bold text-primary">Product list</h6>
             </div>
             <div className="card-body">
-              Chart.js is a third party plugin that is used to
-              generate the charts in this theme. The charts below have been customized -
-              for further customization options, please visit the
-                    Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                  </div>
+              <ProductList />
+            </div>
           </div>
 
         </div>
+
+        <div className="col-xl-6 col-lg-6">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">Order list</h6>
+            </div>
+            <div className="card-body">
+              <OrderList />
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </Fragment>
   );
 };

@@ -1,20 +1,12 @@
 
 import React, { useState, FormEvent, Dispatch } from "react";
 import { OnChangeModel } from "../../common/models/Form.models";
-import { addProduct, editProduct } from "../../store/actions/products.action";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/actions/account.actions";
 import TextInput from "../../common/elements/TextInput";
 
 const Login: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
-
-  type FormStateField = { error: string, value: string };
-
-  interface IFormState {
-    email: FormStateField;
-    password: FormStateField;
-  }
 
   const [formState, setFormState] = useState({
     email: { error: "", value: "" },

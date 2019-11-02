@@ -1,6 +1,5 @@
 import React from "react";
 import TopMenuAccount from "./TopMenuAccount";
-import TopMenuInbox from "./TopMenuInbox";
 import "./TopMenu.css";
 import { useSelector } from "react-redux";
 import { IStateType, IRootPageStateType } from "../../store/models/root.interfaces";
@@ -18,7 +17,6 @@ const TopMenu: React.FC = () => {
       </ol>
 
       <ul className="navbar-nav ml-auto">
-        <TopMenuInbox />
         <div className="topbar-divider d-none d-sm-block"></div>
         <TopMenuAccount />
       </ul>

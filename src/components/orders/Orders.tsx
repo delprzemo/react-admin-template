@@ -28,13 +28,24 @@ const Orders: React.FC = () => {
             <p className="mb-4">Users here</p>
 
             <div className="row">
-                <Card title="TOTAL SALES" text={totalSales.toString()} icon="calendar" class="primary" />
-                <Card title="TOTAL AMOUNT" text={totalAmount.toString()} icon="pen" class="danger" />
+                <Card title="TOTAL SALES" text={totalSales.toString()} icon="donate" class="primary" />
+                <Card title="TOTAL AMOUNT" text={totalAmount.toString()} icon="calculator" class="danger" />
             </div>
 
             <div className="row">
                 <div className="col-xl-12 col-lg-12">
-                    <OrderList />
+
+                    <div className="card shadow mb-4">
+                        <div className="card-header py-3">
+                            <h6 className="m-0 font-weight-bold text-primary">Order List</h6>
+                            <div className="header-buttons">
+                            </div>
+                        </div>
+                        <div className="card-body">
+
+                            <OrderList />
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -43,7 +54,7 @@ const Orders: React.FC = () => {
                     <OrderForm />
                 </div>
                 <div className="col-md-6">
-                    
+
                     <div className="card card-bottom-list shadow mb-4">
                         <div className="card-header py-3">
                             <h6 className="m-0 font-weight-bold text-primary">Product list</h6>

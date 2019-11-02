@@ -39,9 +39,9 @@ const Products: React.FC = () => {
       <p className="mb-4">Products here</p>
 
       <div className="row">
-        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="calendar" class="primary" />
-        <Card title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="pen" class="danger" />
-        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="store" class="success" />
+        <Card title="PRODUCT COUNT" text={`${numberItemsCount}`} icon="box" class="primary" />
+        <Card title="PRODUCT AMOUNT" text={`${totalAmount}`} icon="warehouse" class="danger" />
+        <Card title="SUMMARY PRICE" text={`$${totalPrice}`} icon="dollar-sign" class="success" />
       </div>
 
       <div className="row">

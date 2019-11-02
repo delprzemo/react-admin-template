@@ -55,8 +55,8 @@ const Users: React.FC = () => {
       <p className="mb-4">Users here</p>
 
       <div className="row">
-        <Card title="ADMINS" text={admins.length.toString()} icon="calendar" class="primary" />
-        <Card title="USER" text={users.length.toString()} icon="pen" class="danger" />
+        <Card title="ADMINS" text={admins.length.toString()} icon="user-tie" class="primary" />
+        <Card title="USER" text={users.length.toString()} icon="user" class="danger" />
       </div>
 
       <div className="row">

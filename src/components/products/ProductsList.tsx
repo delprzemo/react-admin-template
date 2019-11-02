@@ -5,7 +5,7 @@ import { IProduct } from "../../store/models/product.interface";
 
 
 export type productListProps = {
-  onSelect: (product: IProduct) => void;
+  onSelect?: (product: IProduct) => void;
   children?: React.ReactNode;
 };
 
@@ -16,8 +16,7 @@ function ProductList(props: productListProps): JSX.Element  {
     if (!product) { return null; }
     return (<tr className={`table-row ${(products.selectedProduct && products.selectedProduct.id === product.id) ? "selected" : ""}`}
       onClick={() => {
-        props.onSelect(product);
-
+        if(props.onSelect) props.onSelect(product);
       }}
       key={`product_${product.id}`}>
       <th scope="row">{product.id}</th>
