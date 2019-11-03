@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   const totalOrderAmount: number = orders.reduce((prev, next) => prev + next.amount, 0);
 
   const dispatch: Dispatch<any> = useDispatch();
-  dispatch(updateCurrentPath("home", "dashboard"));
+  dispatch(updateCurrentPath("home", ""));
 
   return (
     <Fragment>

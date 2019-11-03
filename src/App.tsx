@@ -10,7 +10,6 @@ import { AccountRoute } from "./common/elements/AccountRoute";
 const App: React.FC = () => {
   return (
     <div className="App" id="wrapper">
-
       <Router>
         <Switch>
           <PrivateRoute path="/">

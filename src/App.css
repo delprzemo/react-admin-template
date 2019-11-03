@@ -90,3 +90,33 @@ li a {
     color: seagreen !important;
     font-family: sans-serif !important;
 }
+
+.toggle-area {
+    display:none;
+}
+
+.collapsed {
+    display:block;
+}
+
+.toggle-button {
+    background-color: #303030 !important;
+    border-color: #303030 !important;
+    width: 40px;
+    color: seagreen !important;
+}
+
+
+@media (max-width: 380px) {
+    .collapsed {
+        display:none !important;
+    }
+
+    .toggle-area {
+        position: fixed;
+        bottom: 2%;
+        left:2%;
+        z-index: 200 !important;
+        display: block;
+    }
+}

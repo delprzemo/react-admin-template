@@ -9,7 +9,6 @@ const TopMenu: React.FC = () => {
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-custom-dark topbar mb-4 static-top shadow">
-
       <ol className="breadcrumb dark-breadcrumb">
         <li className="breadcrumb-item"><a href="# ">{page ? page.area : null}</a></li>
         <li className="breadcrumb-item"><a href="# ">{page ? page.subArea : null}</a></li>
