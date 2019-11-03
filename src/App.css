@@ -61,7 +61,7 @@ body {
 }
 
 .bg-gradient-primary-green {
-    background-image: linear-gradient(180deg,#303030 10%,#00bc8c 100%);
+    background-image: linear-gradient(180deg,#0e1e24 10%, #00c6b6 100%);
     background-size: cover;
 }
 
@@ -70,11 +70,11 @@ body {
 }
 
 .bg-custom-dark {
-    background-color: #303030;
+    background-color: #0e1e24;
 }
 
 .dark-breadcrumb {
-    background-color: #303030 !important;
+    background-color: #0e1e24 !important;
     margin-top: 15px !important;
 }
 
@@ -100,8 +100,8 @@ li a {
 }
 
 .toggle-button {
-    background-color: #303030 !important;
-    border-color: #303030 !important;
+    background-color: #0e1e24 !important;
+    border-color: #0e1e24 !important;
     width: 40px;
     color: seagreen !important;
 }
