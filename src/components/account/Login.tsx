@@ -3,7 +3,7 @@ import React, { useState, FormEvent, Dispatch } from "react";
 import { OnChangeModel } from "../../common/models/Form.types";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/actions/account.actions";
-import TextInput from "../../common/elements/TextInput";
+import TextInput from "../../common/components/TextInput";
 
 const Login: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();

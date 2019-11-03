@@ -1,5 +1,5 @@
 import React, { Fragment, Dispatch } from "react";
-import TopCard from "../../common/elements/TopCard";
+import TopCard from "../../common/components/TopCard";
 import { IUser } from "../../store/models/user.interface";
 import { useDispatch, useSelector } from "react-redux";
 import { IStateType } from "../../store/models/root.interfaces";

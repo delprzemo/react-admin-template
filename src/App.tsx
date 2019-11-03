@@ -2,10 +2,10 @@ import React from "react";
 import "./App.css";
 import "./styles/sb-admin-2.min.css";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Login from "./components/account/Login";
-import Admin from "./components/Admin";
-import { PrivateRoute } from "./common/elements/PrivateRoute";
-import { AccountRoute } from "./common/elements/AccountRoute";
+import Login from "./components/Account/Login";
+import Admin from "./components/Admin/Admin";
+import { PrivateRoute } from "./common/components/PrivateRoute";
+import { AccountRoute } from "./common/components/AccountRoute";
 
 const App: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, Fragment, Dispatch } from "react";
 import { IProduct } from "../../store/models/product.interface";
-import TextInput from "../../common/elements/TextInput";
-import NumberInput from "../../common/elements/NumberInput";
+import TextInput from "../../common/components/TextInput";
+import NumberInput from "../../common/components/NumberInput";
 import { OnChangeModel, IOrderFormState } from "../../common/models/Form.types";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../store/actions/orders.actions";
