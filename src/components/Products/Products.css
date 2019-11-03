@@ -1,0 +1,34 @@
+.header-buttons {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+
+.btn-green {
+    background-color: cadetblue !important;
+    border-color: cadetblue !important;
+    margin-right: 3px;
+    width: 40px;
+}
+
+.btn-blue {
+    background-color: lightblue !important;
+    border-color: lightblue !important;
+    margin-right: 3px;
+    width: 40px;
+}
+
+.btn-red {
+    background-color: indianred !important;
+    border-color: indianred !important;
+    margin-right: 3px;
+    width: 40px;
+}
+
+.table-row {
+    cursor: pointer;
+}
+
+.selected {
+    background-color:lavender;
+}
