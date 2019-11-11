@@ -19,9 +19,10 @@
 - Authentication
 - **Clean, easy, ready to start new project**
 
+## Pricing
+It's completly **free** (no commercial versions)
 
 ## Quick start
-
 
 #### 1. Get the latest version
 
@@ -44,3 +45,7 @@ It will run application in http://localhost:3000
 #### 4. Run `npm run build`
 
 Builds the production version of app and put it into build folder. Now you can use these files to perform real production deployment. 
+
+## License
+
+[MIT](https://github.com/flatlogic/react-material-dashboard/blob/master/LICENSE.txt).
