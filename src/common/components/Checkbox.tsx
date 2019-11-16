@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import { CheckboxProps } from "../models/Checkbox.types";
+import { CheckboxProps } from "../types/Checkbox.types";
 
 function Checkbox(props: CheckboxProps): JSX.Element {
     const [touched, setTouch] = useState(false);

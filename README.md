@@ -19,6 +19,7 @@ Created by https://foreach.pl trainers for training participants.
 
 ## Features
 - React (without jQuery etc.)
+- TypeScript
 - React Hooks
 - Redux
 - Responsive (adjusted to mobile devices)

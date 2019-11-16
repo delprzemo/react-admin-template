@@ -2,12 +2,12 @@ import React, { useState, FormEvent, Fragment, Dispatch } from "react";
 import { IProduct } from "../../store/models/product.interface";
 import TextInput from "../../common/components/TextInput";
 import NumberInput from "../../common/components/NumberInput";
-import { OnChangeModel, IOrderFormState } from "../../common/models/Form.types";
+import { OnChangeModel, IOrderFormState } from "../../common/types/Form.types";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../store/actions/orders.actions";
 import { addNotification } from "../../store/actions/notifications.action";
 import { clearSelectedProduct, changeProductAmount } from "../../store/actions/products.action";
-import { IStateType } from "../../store/models/root.interfaces";
+import { IStateType } from "../../store/models/root.interface";
 
 const OrderForm: React.FC = () => {
     const dispatch: Dispatch<any> = useDispatch();

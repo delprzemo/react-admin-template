@@ -1,6 +1,6 @@
 import React, { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IStateType } from "../../store/models/root.interfaces";
+import { IStateType } from "../../store/models/root.interface";
 import { INotification } from "../../store/models/notification.interface";
 import { removeNotification } from "../../store/actions/notifications.action";
 

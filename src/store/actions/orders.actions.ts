@@ -1,4 +1,4 @@
-import { IOrder } from "../models/order.interfaces";
+import { IOrder } from "../models/order.interface";
 
 export const ADD_ORDER: string = "ADD_ORDER";
 

@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, Fragment } from "react";
-import { SelectProps } from "../models/Select.types";
+import { SelectProps } from "../types/Select.types";
 
 function SelectInput(props: SelectProps): JSX.Element {
     const [touched, setTouch] = useState(false);

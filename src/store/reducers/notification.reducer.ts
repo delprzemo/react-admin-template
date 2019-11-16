@@ -1,4 +1,4 @@
-import { IActionBase, INotificationState } from "../models/root.interfaces";
+import { IActionBase, INotificationState } from "../models/root.interface";
 import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from "../actions/notifications.action";
 
 const initialState: INotificationState = {

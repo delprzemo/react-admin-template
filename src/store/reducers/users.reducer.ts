@@ -1,4 +1,4 @@
-import { IUserState, IActionBase } from "../models/root.interfaces";
+import { IUserState, IActionBase } from "../models/root.interface";
 import { ADD_ADMIN, REMOVE_ADMIN } from "../actions/users.action";
 
 const initialState: IUserState = {

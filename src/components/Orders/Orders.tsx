@@ -1,14 +1,14 @@
 import React, { Fragment, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
-import { IOrder } from "../../store/models/order.interfaces";
+import { IOrder } from "../../store/models/order.interface";
 import OrderList from "./OrderList";
 import TopCard from "../../common/components/TopCard";
 import OrderForm from "./OrderForm";
 import ProductList from "../Products/ProductsList";
 import { IProduct } from "../../store/models/product.interface";
 import { changeSelectedProduct, clearSelectedProduct } from "../../store/actions/products.action";
-import { IStateType } from "../../store/models/root.interfaces";
+import { IStateType } from "../../store/models/root.interface";
 
 const Orders: React.FC = () => {
     const dispatch: Dispatch<any> = useDispatch();

@@ -5,7 +5,7 @@ import TopCard from "../../common/components/TopCard";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
-import { IProductState, IStateType, IRootPageStateType } from "../../store/models/root.interfaces";
+import { IProductState, IStateType, IRootPageStateType } from "../../store/models/root.interface";
 import Popup from "reactjs-popup";
 import { removeProduct, clearSelectedProduct, setModificationState,
   changeSelectedProduct } from "../../store/actions/products.action";

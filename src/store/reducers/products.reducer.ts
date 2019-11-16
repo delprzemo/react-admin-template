@@ -1,4 +1,4 @@
-import { IProductState, IActionBase } from "../models/root.interfaces";
+import { IProductState, IActionBase } from "../models/root.interface";
 import { ADD_PRODUCT, CHANGE_PRODUCT_PENDING_EDIT, EDIT_PRODUCT, REMOVE_PRODUCT,
     CLEAR_PRODUCT_PENDING_EDIT, SET_MODIFICATION_STATE, CHANGE_PRODUCT_AMOUNT} from "../actions/products.action";
 import { IProduct, ProductModificationStatus } from "../models/product.interface";

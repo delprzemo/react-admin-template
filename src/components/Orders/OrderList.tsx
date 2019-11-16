@@ -1,7 +1,7 @@
 import React, { } from "react";
 import { useSelector } from "react-redux";
-import { IOrder } from "../../store/models/order.interfaces";
-import { IStateType } from "../../store/models/root.interfaces";
+import { IOrder } from "../../store/models/order.interface";
+import { IStateType } from "../../store/models/root.interface";
 
 const OrderList: React.FC = () => {
     const orders: IOrder[] = useSelector((state: IStateType) => state.orders.orders);

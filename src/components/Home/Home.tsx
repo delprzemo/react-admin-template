@@ -2,9 +2,9 @@ import React, { Fragment, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentPath } from "../../store/actions/root.actions";
 import TopCard from "../../common/components/TopCard";
-import { IProductState, IStateType } from "../../store/models/root.interfaces";
+import { IProductState, IStateType } from "../../store/models/root.interface";
 import ProductList from "../Products/ProductsList";
-import { IOrder } from "../../store/models/order.interfaces";
+import { IOrder } from "../../store/models/order.interface";
 import OrderList from "../Orders/OrderList";
 
 const Home: React.FC = () => {

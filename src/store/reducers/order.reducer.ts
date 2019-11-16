@@ -1,4 +1,4 @@
-import { IOrdersState, IActionBase } from "../models/root.interfaces";
+import { IOrdersState, IActionBase } from "../models/root.interface";
 import { ADD_ORDER } from "../actions/orders.actions";
 
 

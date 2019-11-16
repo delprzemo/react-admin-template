@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, Dispatch, Fragment } from "react";
-import { IStateType, IProductState } from "../../store/models/root.interfaces";
+import { IStateType, IProductState } from "../../store/models/root.interface";
 import { useSelector, useDispatch } from "react-redux";
 import { IProduct, ProductModificationStatus } from "../../store/models/product.interface";
 import TextInput from "../../common/components/TextInput";
@@ -8,7 +8,7 @@ import { addNotification } from "../../store/actions/notifications.action";
 import NumberInput from "../../common/components/NumberInput";
 import Checkbox from "../../common/components/Checkbox";
 import SelectInput from "../../common/components/Select";
-import { OnChangeModel, IProductFormState } from "../../common/models/Form.types";
+import { OnChangeModel, IProductFormState } from "../../common/types/Form.types";
 
 const ProductForm: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();

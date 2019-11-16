@@ -1,6 +1,6 @@
 import { combineReducers, Reducer } from "redux";
 import { UPDATE_CURRENT_PATH } from "../actions/root.actions";
-import { IRootStateType, IActionBase, IStateType } from "../models/root.interfaces";
+import { IRootStateType, IActionBase, IStateType } from "../models/root.interface";
 import productsReducer from "./products.reducer";
 import notificationReducer from "./notification.reducer";
 import userReducer from "./users.reducer";

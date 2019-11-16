@@ -1,4 +1,4 @@
-import { IActionBase } from "../models/root.interfaces";
+import { IActionBase } from "../models/root.interface";
 import { IAccount } from "../models/account.interface";
 import { LOG_IN, LOG_OUT } from "../actions/account.actions";
 
