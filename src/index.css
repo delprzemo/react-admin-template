@@ -10,8 +10,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: darkslategray !important;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
