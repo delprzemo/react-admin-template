@@ -10,6 +10,12 @@ Only **core functionalities** in order to avoid huge refactor/cleaning.
 
 Created by https://foreach.pl trainers for training participants. 
 
+**Check also Cheatsheets:**
+
+[React](https://github.com/delprzemo/react-cheatsheet) :star:
+[Angular](https://github.com/delprzemo/angular-cheatsheet) :star:
+[TypeScript](https://github.com/delprzemo/typescript-cheatsheet) :star:
+
 [![image](https://i.imgur.com/6T37H6V.jpg)](https://react-admin-template.netlify.com/)
 <img src="https://i.imgur.com/q607C0f.jpg." data-canonical-src="https://i.imgur.com/q607C0f.jpg" width="400" />
 <img src="https://i.imgur.com/a2NUwFX.jpg." data-canonical-src="https://i.imgur.com/q607C0f.jpg" width="245" />
